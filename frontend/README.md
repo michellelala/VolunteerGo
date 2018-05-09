@@ -4,15 +4,15 @@ Ever had a hankerin' to give back to society, but no feasible way to tell when y
 #### Use this app, that's what!
 Yuperoo, VolunteerGo is here to lend a helping hand (heh).
 
-This app is still a work-in-progress, but here's what I'm workin' on:
+This app is still a work-in-progress, but here an on-going list of features that will be implemented:
 
 Organizations can:
-- Sign up to be part of the VolunteerGo network of non-profit organizations!
-- Start receiving pings (volunteers send this to alert you of their availability) right away!
-- Accept or decline pings based on your organizational needs!
-- Turn pings on or off!
+- Sign up to be part of the network of non-profit organizations
+- Start receiving pings (volunteers send this to alert you of their availability) right away
+- Accept or decline pings based on your organizational needs
+- Turn pings on or off
 
 Volunteers can:
-- Sign up to be part of the VolunteerGo network of... volunteers!
-- Start sending pings to organizations!
-- See what organizations are near your current location!
+- Sign up to be part of the network of volunteers
+- Start sending pings to organizations
+- See what organizations are near your current location

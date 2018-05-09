@@ -39,4 +39,10 @@ router.get("/getPingsSentToOrg", loginRequired, db.getPingsSentToOrg)
 // --------------- POST -------------- //
 router.post("/addPing", loginRequired, db.sendPing)
 
+// -------------- DELETE ------------- //
+
+// --------------- PUT --------------- //
+router.put("/acceptPing", loginRequired, db.acceptPing)
+
+
 module.exports = router;

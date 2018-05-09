@@ -5,7 +5,8 @@ const passport = require("../auth/local");
 
 /*
 */
-// ----- REGISTER NEW USER ----- "/users/register"
+// ----- REGISTER NEW USER
+// ----- "/users/register"
 const registerUser = (req, res, next) => {
 	const hash = authHelpers.createHash(req.body.password);
   db
@@ -31,14 +32,16 @@ const registerUser = (req, res, next) => {
 	});
 };
 
-// ----- LOG OUT USER ----- "/users/logout"
+// ----- LOG OUT USER
+// ----- "/users/logout"
 const logoutUser = (req, res, next) => {
   req.logout();
   res.status(200).json("Successfully logged out.");
 }
 
 
-// ----- GET ALL ORGANIZATIONS ----- "/users/getAllOrgs"
+// ----- GET ALL ORGANIZATIONS
+// ----- "/users/getAllOrgs"
 const getAllOrgs = (req, res, next) => {
 	db
 		.any(
@@ -55,7 +58,8 @@ const getAllOrgs = (req, res, next) => {
 	})
 }
 
-// ----- GET ORG ID BY USERNAME ----- "/users/getOrgId/:orgUsername"
+// ----- GET ORG ID BY USERNAME
+// ----- "/users/getOrgId/:orgUsername"
 const getOrgIdByUsername = (req, res, next) => {
 	db
 		.one(
@@ -65,7 +69,8 @@ const getOrgIdByUsername = (req, res, next) => {
 		.catch(err => res.status(500).send("Error retrieving org id. Check username."))
 }
 
-// ----- GET ALL VOLUNTEERS ----- "/users/getAllVolunteers"
+// ----- GET ALL VOLUNTEERS
+// ----- "/users/getAllVolunteers"
 const getAllVolunteers = (req, res, next) => {
 	db
 		.any(
@@ -82,7 +87,8 @@ const getAllVolunteers = (req, res, next) => {
 		})
 }
 
-// ----- GET ALL PINGS FOR LOGGED IN VOLUNTEER ----- "/users/getPingsSentByVolunteer"
+// ----- GET ALL PINGS FOR LOGGED IN VOLUNTEER
+// ----- "/users/getPingsSentByVolunteer"
 const getPingsSentByVolunteer = (req, res, next) => {
 	db
 		.any(
@@ -102,11 +108,12 @@ const getPingsSentByVolunteer = (req, res, next) => {
 		})
 }
 
-// ----- GET ALL PINGS SENT TO LOGGED IN ORG ----- "/users/getPingsSentToOrg"
+// ----- GET ALL PINGS SENT TO LOGGED IN ORG
+// ----- "/users/getPingsSentToOrg"
 const getPingsSentToOrg = (req, res, next) => {
 	db
 		.any(
-			"SELECT users.username, users.email, users.name, start_time, duration, accepted FROM pings JOIN users ON pings.volunteer_id=users.id WHERE org_id=${id};",
+			"SELECT pings.id as ping_id, users.username, users.email, users.name, start_time, duration, accepted FROM pings JOIN users ON pings.volunteer_id=users.id WHERE org_id=${id};",
 			{
 				id: req.user.id
 			}
@@ -120,7 +127,8 @@ const getPingsSentToOrg = (req, res, next) => {
 		})
 }
 
-// ----- ADD A PING ----- "/users/sendPing"
+// ----- ADD A PING
+// ----- "/users/sendPing"
 const sendPing = (req, res, next) => {
 	db
 		.none(
@@ -140,6 +148,26 @@ const sendPing = (req, res, next) => {
 		})
 }
 
+// ----- ACCEPT A PING (ORG)
+// ----- "/users/acceptPing"
+const acceptPing = (req, res, next) => {
+	db
+		.none(
+			"UPDATE pings SET accepted=TRUE WHERE id=${pingId}", {
+				pingId: req.body.pingId
+			}
+		)
+		.then(() => {
+			res.status(200).send(`Accepted ping for request id ${req.body.pingId}.`)
+		})
+		.catch(err => {
+			res.status(500).json({
+				error: err,
+				message: "Error accepting ping."
+			})
+		})
+}
+
 module.exports = {
 	registerUser,
 	logoutUser,
@@ -148,5 +176,6 @@ module.exports = {
 	getAllVolunteers,
 	getPingsSentByVolunteer,
 	getPingsSentToOrg,
-	sendPing
+	sendPing,
+	acceptPing
 };

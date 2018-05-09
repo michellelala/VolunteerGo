@@ -30,10 +30,13 @@ router.get("/logout", loginRequired, db.logoutUser);
 
 
 // --------------- GET --------------- //
-
 router.get("/getAllOrgs", db.getAllOrgs)
+router.get("/getOrgId/:orgUsername", db.getOrgIdByUsername)
 router.get("/getAllVolunteers", db.getAllVolunteers)
+router.get("/getPingsSentByVolunteer", loginRequired, db.getPingsSentByVolunteer)
+router.get("/getPingsSentToOrg", loginRequired, db.getPingsSentToOrg)
 
-
+// --------------- POST -------------- //
+router.post("/addPing", loginRequired, db.sendPing)
 
 module.exports = router;

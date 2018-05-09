@@ -3,8 +3,9 @@ const db = pgp("postgres://localhost/volunteergo");
 const authHelpers = require("../auth/helpers");
 const passport = require("../auth/local");
 
-
-// ----- REGISTER new user ----- "/users/register" ----- //
+/*
+*/
+// ----- REGISTER NEW USER ----- "/users/register"
 const registerUser = (req, res, next) => {
 	const hash = authHelpers.createHash(req.body.password);
   db
@@ -30,14 +31,14 @@ const registerUser = (req, res, next) => {
 	});
 };
 
-// ----- LOGOUT user ----- "/users/logout" ----- //
+// ----- LOG OUT USER ----- "/users/logout"
 const logoutUser = (req, res, next) => {
   req.logout();
   res.status(200).json("Successfully logged out.");
 }
 
 
-// ----- GET ALL ORGANIZATIONS ----- "/users/getAllOrgs" ----- //
+// ----- GET ALL ORGANIZATIONS ----- "/users/getAllOrgs"
 const getAllOrgs = (req, res, next) => {
 	db
 		.any(
@@ -54,7 +55,17 @@ const getAllOrgs = (req, res, next) => {
 	})
 }
 
-// ----- GET ALL VOLUNTEERS ----- "/users/getAllVolunteers" ----- //
+// ----- GET ORG ID BY USERNAME ----- "/users/getOrgId/:orgUsername"
+const getOrgIdByUsername = (req, res, next) => {
+	db
+		.one(
+			"SELECT id FROM users WHERE username=${orgUsername}", { orgUsername: req.params.orgUsername }
+		)
+		.then(data => res.status(200).send(data))
+		.catch(err => res.status(500).send("Error retrieving org id. Check username."))
+}
+
+// ----- GET ALL VOLUNTEERS ----- "/users/getAllVolunteers"
 const getAllVolunteers = (req, res, next) => {
 	db
 		.any(
@@ -71,10 +82,71 @@ const getAllVolunteers = (req, res, next) => {
 		})
 }
 
+// ----- GET ALL PINGS FOR LOGGED IN VOLUNTEER ----- "/users/getPingsSentByVolunteer"
+const getPingsSentByVolunteer = (req, res, next) => {
+	db
+		.any(
+			"SELECT org_id, users.username, start_time, duration, accepted FROM pings JOIN users ON pings.org_id=users.id WHERE volunteer_id=${id}",
+			{
+				id: req.user.id
+			}
+		)
+		.then(data => {
+			res.status(200).send(data)
+		})
+		.catch(err => {
+			res.status(500).json({
+				error: err,
+				message: "There was an error retrieving your pings."
+			})
+		})
+}
+
+// ----- GET ALL PINGS SENT TO LOGGED IN ORG ----- "/users/getPingsSentToOrg"
+const getPingsSentToOrg = (req, res, next) => {
+	db
+		.any(
+			"SELECT users.username, users.email, users.name, start_time, duration, accepted FROM pings JOIN users ON pings.volunteer_id=users.id WHERE org_id=${id};",
+			{
+				id: req.user.id
+			}
+		)
+		.then(data => res.status(200).send(data))
+		.catch(err => {
+			res.status(500).json({
+				error: err,
+				message: "Error retrieving pings sent to you."
+			})
+		})
+}
+
+// ----- ADD A PING ----- "/users/sendPing"
+const sendPing = (req, res, next) => {
+	db
+		.none(
+			"INSERT INTO pings VALUES (DEFAULT, ${volunteerId}, ${orgId}, ${startTime}, ${duration})",
+			{
+				volunteerId: req.user.id, // only volunteers can ping
+				orgId: req.body.orgId,
+				startTime: req.body.startTime,
+				duration: req.body.duration
+			}
+		)
+		.then(() => {
+			res.status(200).send(`Successfully pinged ${req.body.orgId}!`)
+		})
+		.catch(err => {
+			res.status(500).send("Unable to send ping!")
+		})
+}
 
 module.exports = {
 	registerUser,
 	logoutUser,
 	getAllOrgs,
-	getAllVolunteers
+	getOrgIdByUsername,
+	getAllVolunteers,
+	getPingsSentByVolunteer,
+	getPingsSentToOrg,
+	sendPing
 };

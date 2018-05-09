@@ -29,9 +29,10 @@ CREATE TABLE organizations (
 CREATE TABLE pings (
     id SERIAL PRIMARY KEY,
     volunteer_id INT REFERENCES users(id),
-    organization_id INT REFERENCES users(id),
-    time_sent VARCHAR,
-    duration VARCHAR
+    org_id INT REFERENCES users(id),
+    start_time VARCHAR,
+    duration VARCHAR,
+		accepted BOOLEAN DEFAULT FALSE
 );
 
 
@@ -56,3 +57,10 @@ INSERT INTO organizations
 					 (DEFAULT, 8, '(000)555-1234', 'address goes here', 'website goes here', DEFAULT),
 					 (DEFAULT, 9, '(000)555-1234', 'address goes here', 'website goes here', DEFAULT),
 					 (DEFAULT, 10, '(000)555-1234', 'address goes here', 'website goes here', DEFAULT);
+
+INSERT INTO pings
+		VALUES (DEFAULT, 1, 6, '5:00PM', '2 hours', false),
+					 (DEFAULT, 2, 6, '6:00PM', '1 hour', false),
+					 (DEFAULT, 3, 7, '5:30PM', '30 minutes', false),
+					 (DEFAULT, 4, 8, '3:00PM', '1 hour 30 minutes', true),
+					 (DEFAULT, 5, 10, '2:30PM', '4 hours', true);

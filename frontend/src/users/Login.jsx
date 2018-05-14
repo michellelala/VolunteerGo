@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 export default class Login extends Component {
@@ -8,7 +9,8 @@ export default class Login extends Component {
 		this.state = {
 			usernameInput: "",
 			passwordInput: "",
-			message: ""
+			message: "",
+			loggedIn: false
 		}
 	}
 
@@ -19,20 +21,43 @@ export default class Login extends Component {
 	}
 
 	handleLoginFormSubmit = e => {
-		const { usernameInput, passwordInput, message } = this.state;
+		e.preventDefault();
+		const { usernameInput, passwordInput } = this.state;
+
 		axios
 			.post("/users/login", {
 				username: usernameInput,
 				password: passwordInput
 			})
+			.then(res => {
+				// console.log("data from /users/login axios call: ", res.data)
+				this.props.setUser(res.data)
+				this.setState({
+					usernameInput: "",
+					passwordInput: "",
+					loggedIn: true
+				})
+			})
+			.catch(err => {
+				this.setState({
+					usernameInput: "",
+					passwordInput: "",
+					message: "Username/password combo failed."
+				})
+			})
 	}
 
   render() {
-		const { usernameInput, passwordInput, message } = this.state;
-		console.log(this.state)
+		const { usernameInput, passwordInput, message, loggedIn } = this.state;
+		// console.log("Login props: ", this.props)
+
+		if (loggedIn) {
+      return <Redirect to="/register" />;
+    }
+		
     return (
       <div>
-				<form>
+				<form onSubmit={this.handleLoginFormSubmit}>
 					<input
 						value={usernameInput}
 						placeholder="Username"
@@ -43,6 +68,7 @@ export default class Login extends Component {
 						value={passwordInput}
 						placeholder="Password"
 						name="passwordInput"
+						type="password"
 						onChange={this.handleInputChange}
 					/>
 					<input
@@ -50,6 +76,7 @@ export default class Login extends Component {
 						value="Login"
 					/>
 				</form>
+				{message}
 			</div>
     );
   }

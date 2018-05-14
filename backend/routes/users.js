@@ -30,9 +30,10 @@ router.get("/logout", loginRequired, db.logoutUser);
 
 
 // --------------- GET --------------- //
-router.get("/getAllOrgs", db.getAllOrgs)
-router.get("/getOrgId/:orgUsername", db.getOrgIdByUsername)
-router.get("/getAllVolunteers", db.getAllVolunteers)
+router.get("/getUser", loginRequired, db.getUser);
+router.get("/getAllOrgs", loginRequired, db.getAllOrgs)
+router.get("/getOrgId/:orgUsername", loginRequired, db.getOrgIdByUsername)
+router.get("/getAllVolunteers", loginRequired, db.getAllVolunteers)
 router.get("/getPingsSentByVolunteer", loginRequired, db.getPingsSentByVolunteer)
 router.get("/getPingsSentToOrg", loginRequired, db.getPingsSentToOrg)
 

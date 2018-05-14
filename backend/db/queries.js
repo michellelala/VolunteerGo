@@ -39,6 +39,19 @@ const logoutUser = (req, res, next) => {
   res.status(200).json("Successfully logged out.");
 }
 
+// ----- GET USER
+// ----- "/users/getUser"
+const getUser = (req, res, next) => {
+  db
+    .one("SELECT username, email, org FROM users WHERE username=${username}", {
+      username: req.user.username
+    })
+    .then(data => {
+      res.status(200).json({ 
+				user: data
+			});
+    });
+}
 
 // ----- GET ALL ORGANIZATIONS
 // ----- "/users/getAllOrgs"
@@ -171,6 +184,7 @@ const acceptPing = (req, res, next) => {
 module.exports = {
 	registerUser,
 	logoutUser,
+	getUser,
 	getAllOrgs,
 	getOrgIdByUsername,
 	getAllVolunteers,

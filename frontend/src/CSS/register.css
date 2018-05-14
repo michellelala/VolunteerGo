@@ -1,0 +1,41 @@
+.register-parent-div {
+    width: 60%;
+    margin: 0 auto;
+    background-color: lightgoldenrodyellow;
+    text-align: center;
+}
+
+.register-div {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.choose-user-type-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.user-type {
+    border: 1px solid black;
+    padding: 20px 5px;
+    margin: 5px;
+    width: 25%;
+}
+.user-type:hover {
+    background-color: black;
+    color: white;
+}
+
+.reg-depending-on-user-type {
+    padding: 20px 0;
+    /* background-color: lightblue; */
+}
+.reg-org {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 0 auto;
+}

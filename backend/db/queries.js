@@ -3,21 +3,19 @@ const db = pgp("postgres://localhost/volunteergo");
 const authHelpers = require("../auth/helpers");
 const passport = require("../auth/local");
 
-/*
-*/
+
 // ----- REGISTER NEW USER
-// ----- "/users/register"
-const registerUser = (req, res, next) => {
+// ----- "/users/register/volunteer"
+const registerVolunteer = (req, res, next) => {
 	const hash = authHelpers.createHash(req.body.password);
   db
     .none(
-      "INSERT INTO users (username, password_digest, email, name, org) VALUES (${username}, ${password}, ${email}, ${name}, ${org})",
+      "INSERT INTO users (username, password_digest, email, name, org) VALUES (${username}, ${password}, ${email}, ${name}, false)",
       {
         username: req.body.username,
         password: hash,
 				email: req.body.email,
-				name: req.body.name,
-				org: req.body.org
+				name: req.body.name
       }
     )
 	.then(() => {
@@ -25,12 +23,40 @@ const registerUser = (req, res, next) => {
 	})
 	.catch(err => {
 		res.status(500).json({
-			message: "error registering new user",
+			message: "Error registering new volunteer.",
 			error: err,
 			body: req.body
 		})
 	});
 };
+
+// ----- ADD NEW ORG INFO
+// ----- "/users/register/organization"
+const registerOrganization = (req, res, next) => {
+	const hash = authHelpers.createHash(req.body.password);
+	db
+		.none(
+      "INSERT INTO users VALUES (DEFAULT, ${username}, ${password}, ${email}, ${name}, true, ${telephone}, ${address}, ${website}, DEFAULT)", {
+				username: req.body.username,
+        password: hash,
+				email: req.body.email,
+				name: req.body.name,
+				telephone: req.body.telephone,
+				address: req.body.address,
+				website: req.body.website
+			}
+		)
+		.then(() => {
+			return next();
+		})
+		.catch(err => {
+			res.status(500).json({
+				message: "Error registering new organization.",
+				error: err,
+				body: req.body
+			})
+		});
+}
 
 // ----- LOG OUT USER
 // ----- "/users/logout"
@@ -50,7 +76,36 @@ const getUser = (req, res, next) => {
       res.status(200).json({ 
 				user: data
 			});
-    });
+		})
+		.catch(err => {
+			res.status(500).send("Error retrieving user.")
+		})
+}
+
+// ----- GET ALL USER EMAILS
+// ----- "/users/getAllEmails"
+const getAllEmails = (req, res, next) => {
+	db
+		.any("SELECT email FROM users")
+		.then(data => {
+			res.status(200).send(data.map(user => user.email))
+		})
+		.catch(err => {
+			res.status(500).send("Error retrieving all emails.")
+		})
+}
+
+// ----- GET ALL USER USERNAMES
+// ----- "/users/getAllUsernames"
+const getAllUsernames = (req, res, next) => {
+	db
+		.any("SELECT username FROM users")
+		.then(data => {
+			res.status(200).send(data.map(user => user.username))
+		})
+		.catch(err => {
+			res.status(500).send("Error retrieving all usernames.")
+		})
 }
 
 // ----- GET ALL ORGANIZATIONS
@@ -182,9 +237,12 @@ const acceptPing = (req, res, next) => {
 }
 
 module.exports = {
-	registerUser,
+	registerVolunteer,
+	registerOrganization,
 	logoutUser,
 	getUser,
+	getAllEmails,
+	getAllUsernames,
 	getAllOrgs,
 	getOrgIdByUsername,
 	getAllVolunteers,

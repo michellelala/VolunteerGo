@@ -27,48 +27,123 @@ export default class Register extends Component {
 			})
 	}
 
+	// Set user type (this.state.isOrganization) to 
+	// volunteer or organization depending on which is clicked
 	handleUserType = (e) => {
 		if (e.target.innerText === "Volunteer") {
-			this.setState({ isOrganization: false })
+			this.setState({
+				isOrganization: false, 
+				message: "" })
 		} else if (e.target.innerText === "Non-Profit Organization") {
-			this.setState({ isOrganization: true })
+			this.setState({ 
+				isOrganization: true, 
+				message: "" })
 		}
 	}
 
-	handleRegisterVolunteer = (e) => {
+	// FIXME: combine into one function?
+	handleRegisterSubmit = (e) => {
 		e.preventDefault();
 		const { emailInput, usernameInput, passwordInput, nameInput, 
-						isOrganization } = this.state;
+						isOrganization, telephoneInput, addressInput, websiteInput } = this.state;
 		
-		axios
-			.post("/users/register", {
-				username: usernameInput,
-				password: passwordInput,
-				email: emailInput,
-				name: nameInput,
-				org: isOrganization
+		// ---- CHECKS FOR BOTH VOLUNTEER AND ORGANIZATION
+		// Check for empty fields
+		if (!emailInput || !usernameInput || !passwordInput || !nameInput) {
+			return this.setState({
+				message: "Please make sure all fields are filled out."
 			})
-			.then(() => {
-				this.setState({
-				isUserCreated: true,
-				message: `Successfully registered new volunteer!`
+			// Check for username/password length
+		} else if (usernameInput.length < 5 || passwordInput.length < 5) {
+			return this.setState({
+				message: "Username / Password must be at least 5 characters in length."
+			})
+			// Check for valid email
+		} else if (!this.isValidEmail(emailInput)) {
+			return this.setState({
+				message: "Invalid email."
+			})
+		}
+
+		// Register volunteers
+		if (!isOrganization) {
+			axios
+				.post("/users/register/volunteer", {
+					username: usernameInput,
+					password: passwordInput,
+					email: emailInput,
+					name: nameInput
 				})
-			})
-			.catch(err => {
-				this.setState({
-					message: "Error registering new volunteer."
+				.then(() => {
+					this.setState({
+						isUserCreated: true,
+						message: `Successfully registered new volunteer!`
+					})
 				})
-			})
+				// TODO: Add then statement and redirect to user profile
+				.catch(err => {
+					this.setState({ 
+						message: "Sorry, that email or username is in use already."
+					})
+				})
+		} else {
+				axios
+					.post("/users/register/organization", {
+						username: usernameInput,
+						password: passwordInput,
+						email: emailInput,
+						name: nameInput,
+						telephone: telephoneInput,
+						address: addressInput,
+						website: websiteInput
+					})
+					.then(() => {
+						this.setState({
+							isUserCreated: true,
+							message: `Successfully registered new organization!`
+						})
+					})
+					// TODO: Add then statement and redirect to user profile 
+					.catch(err => {
+						this.setState({ 
+							message: "Sorry, that email or username is in use already."
+						})
+					})
+			}
 	}
-	
+
+	handleClearFields = (e) => {
+		this.setState({
+			emailInput: "",
+			usernameInput: "",
+			passwordInput: "",
+			nameInput: "",
+			isUserCreated: false,
+			telephoneInput: "",
+			addressInput: "",
+			websiteInput: "",
+			isOrganization: null,
+			message: ""
+		})
+	}
+
+	// --------------- HELPER FUNCTIONS ---------------
+	isValidEmail = (email) => {
+    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    return pattern.test(email);
+	};
+
 	dependingOnUserType = () => {
 		const { isOrganization, telephoneInput, addressInput, websiteInput } = this.state;
 
 		if (isOrganization === false) {
 			return (
-			<button onClick={this.handleRegisterVolunteer}>
-				Register me as a volunteer 
-				</button>
+				<div>
+					<button onClick={this.handleClearFields}>Clear fields</button>
+					<button onClick={this.handleRegisterSubmit}>
+						Register as a volunteer!
+						</button>
+				</div>
 			)
 		} else if (isOrganization === true) {
 			return (
@@ -91,6 +166,9 @@ export default class Register extends Component {
 						name="websiteInput"
 						onChange={this.handleInputChange}
 					/>
+					<br />
+					<button onClick={this.handleRegisterSubmit}>Register as an non-profit!</button>
+					<button onClick={this.handleClearFields}>Clear fields</button>
 				</div>
 			)
 		}
@@ -99,7 +177,6 @@ export default class Register extends Component {
   render() {
 		const { emailInput, usernameInput, passwordInput, nameInput } = this.state;
 
-		console.log("Register state: ", this.state)
 		return (
 			<div className="register-parent-div">
 				<h3>Hi, you're in the Register component</h3>
@@ -134,10 +211,10 @@ export default class Register extends Component {
 				<h3>I'm a...</h3>
 				<div className="choose-user-type-div">
 					<div className="user-type" onClick={this.handleUserType}>
-						Volunteer
+						Volunteer 
 					</div>
-					<div className="user-type" onClick={this.handleUserType} name="organization">
-						Non-Profit Organization
+					<div className="user-type" onClick={this.handleUserType} name="organization"> 
+						Non-Profit Organization 
 					</div>
 				</div>
 

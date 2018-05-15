@@ -6,15 +6,25 @@ const passport = require("../auth/local");
 
 
 // --------------- USER AUTHENTICATION --------------- //
-
-// REGISTER A NEW USER - THEN LOGIN THE USER
-router.post("/register", db.registerUser, passport.authenticate("local"), (req, res) => {
-  // delete req.user.password_digest;
-  res.json({
-    id: req.user.id,
-    username: req.user.username,
-    message: `${req.user.username} is logged in!`
-  })
+// ----- REGISTER A NEW VOLUNTEER - THEN LOGIN THE VOLUNTEER
+router.post("/register/volunteer", db.registerVolunteer,
+  passport.authenticate("local"), (req, res) => {
+    delete req.user.password_digest;
+    res.json({
+      id: req.user.id,
+      username: req.user.username,
+      message: `${req.user.username} is logged in!`
+    })
+});
+// ----- REGISTER A NEW ORGANIZATION - THEN LOGIN THE ORG
+router.post("/register/organization", db.registerOrganization,
+  passport.authenticate("local"), (req, res) => {
+    delete req.user.password_digest;
+    res.json({
+      id: req.user.id,
+      username: req.user.username,
+      message: `${req.user.username} is logged in!`
+    })
 });
 // ------ LOG IN USER
 router.post("/login", passport.authenticate("local"), (req, res) => {
@@ -31,6 +41,8 @@ router.get("/logout", loginRequired, db.logoutUser);
 
 // --------------- GET --------------- //
 router.get("/getUser", loginRequired, db.getUser);
+router.get("/getAllEmails", db.getAllEmails)
+router.get("/getAllUsernames", db.getAllUsernames)
 router.get("/getAllOrgs", loginRequired, db.getAllOrgs)
 router.get("/getOrgId/:orgUsername", loginRequired, db.getOrgIdByUsername)
 router.get("/getAllVolunteers", loginRequired, db.getAllVolunteers)

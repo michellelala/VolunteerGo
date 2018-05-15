@@ -14,7 +14,7 @@ export default class Login extends Component {
 		}
 	}
 
-	handleInputChange = e => {
+	handleInputChange = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value
 		})
@@ -51,6 +51,7 @@ export default class Login extends Component {
 		const { usernameInput, passwordInput, message, loggedIn } = this.state;
 		// console.log("Login props: ", this.props)
 
+		// ***** CHANGE THIS ***** 
 		if (loggedIn) {
       return <Redirect to="/register" />;
     }

@@ -41,7 +41,6 @@ export default class Register extends Component {
 		}
 	}
 
-	// FIXME: combine into one function?
 	handleRegisterSubmit = (e) => {
 		e.preventDefault();
 		const { emailInput, usernameInput, passwordInput, nameInput, 

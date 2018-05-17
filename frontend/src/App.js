@@ -4,15 +4,16 @@ import axios from "axios";
 
 import './App.css';
 
-import Login from "./users/Login"
-import Register from "./users/Register"
-import Logout from "./users/Logout"
+import Login from "./users/Login";
+import Register from "./users/Register";
+import Logout from "./users/Logout";
+import VolunteerFeed from "./users/volunteer/VolunteerFeed";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: null, // { id, username }
+      user: null, // { id, username, org, message }
       activeUser: false
     };
   }
@@ -45,9 +46,11 @@ class App extends Component {
   renderLogin = () => {
     return <Login user={this.state.user} setUser={this.setUser} />
   }
-
   renderLogout = () => {
     return <Logout user={this.state.user} logoutUser={this.logoutUser} />
+  }
+  renderVolunteerFeed = () => {
+    return <VolunteerFeed user={this.state.user} />
   }
 
   render() {
@@ -58,13 +61,15 @@ class App extends Component {
         <nav>
           <Link to="/login">Login</Link>{" . "}
           <Link to="/register">Register</Link>{" . "}
-          <Link to="/logout">Logout</Link>{" "}
+          <Link to="/logout">Logout</Link>{" . "}
+          <Link to="/v/home">Home</Link>{" "}
         </nav>
 
         <Switch>
           <Route path="/login" render={ this.renderLogin } />
           <Route path="/register" component={ Register } />
           <Route path="/logout" render={ this.renderLogout } />
+          <Route path="/v/home" render={ this.renderVolunteerFeed } />
         </Switch>
       </div>
     );

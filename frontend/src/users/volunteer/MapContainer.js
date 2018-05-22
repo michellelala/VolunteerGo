@@ -8,11 +8,6 @@ import Map from "./Map";
 // The parent of Map
 export class MapContainer extends Component {
 	render() {
-		const style = {
-			width: "70vw",
-			height: "70vh"
-		}
-
 		if (!this.props.loaded) {
 			return <div>Loading map...</div>
 		}

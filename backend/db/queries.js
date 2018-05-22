@@ -200,10 +200,11 @@ const getPingsSentToOrg = (req, res, next) => {
 const sendPing = (req, res, next) => {
 	db
 		.none(
-			"INSERT INTO pings VALUES (DEFAULT, ${volunteerId}, ${orgId}, ${startTime}, ${duration})",
+			"INSERT INTO pings VALUES (DEFAULT, ${volunteerId}, ${orgId}, ${timeSent}, ${startTime}, ${duration})",
 			{
 				volunteerId: req.user.id, // only volunteers can ping
 				orgId: req.body.orgId,
+				timeSent: req.body.timeSent,
 				startTime: req.body.startTime,
 				duration: req.body.duration
 			}

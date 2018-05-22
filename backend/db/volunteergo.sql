@@ -34,6 +34,7 @@ CREATE TABLE pings (
     id SERIAL PRIMARY KEY,
     volunteer_id INT REFERENCES users(id),
     org_id INT REFERENCES users(id),
+    time_sent VARCHAR,
     start_time VARCHAR,
     duration VARCHAR,
 	accepted BOOLEAN DEFAULT FALSE

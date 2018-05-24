@@ -113,7 +113,7 @@ const getAllUsernames = (req, res, next) => {
 const getAllOrgs = (req, res, next) => {
 	db
 		.any(
-		"SELECT users.id, users.username, users.name, users.email, organizations.telephone, organizations.address, organizations.website FROM organizations JOIN users ON organizations.org_id=users.id;"
+			"SELECT id, username, name, telephone, address, website FROM users WHERE org=true;"
 	)
 	.then(data => {
 		res.status(200).send(data)

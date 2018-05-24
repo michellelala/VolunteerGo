@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { GoogleApiWrapper } from "google-maps-react";
+import axios from "axios";
+
 import googleKey from "../../google-key.js"
 // import Geolocation from "react-geolocation";
 
@@ -10,11 +12,19 @@ class VolunteerFeed extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			allOrgs: []
 		}
 	}
 
 	componentDidMount() {
-		// this.getCurrentPosition()
+		axios
+			.get("/users/getAllOrgs")
+			.then((res) => {
+				console.log("data: ", res.data)
+				this.setState({
+					allOrgs: res.data
+				})
+			})
 	}
 
 	componentDidUpdate() {

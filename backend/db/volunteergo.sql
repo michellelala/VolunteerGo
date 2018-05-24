@@ -50,18 +50,12 @@ INSERT INTO users (id, username, password_digest, email, name, org)
            (DEFAULT, 'chicken', '$2a$10$f17jjX0NASQWYOln23Ogk.ePXm0TpAs2oq.k4.YOGQGTnkOvZlD/O', 'chicken@blah.com', 'Chicken', false);
 -- SEED DATA // Organizations
 INSERT INTO users
-    VALUES (DEFAULT, 'orgname1', '$2a$10$f17jjX0NASQWYOln23Ogk.ePXm0TpAs2oq.k4.YOGQGTnkOvZlD/O', 'orgname1@blah.com', 'Org Name 1', TRUE, '555-555-1111', '100 fake street', 'fakewebsite1.com', false),
-           (DEFAULT, 'orgname2', '$2a$10$f17jjX0NASQWYOln23Ogk.ePXm0TpAs2oq.k4.YOGQGTnkOvZlD/O', 'orgname2@blah.com', 'Org Name 2', TRUE, '555-555-2222', '200 fake street', 'fakewebsite2.com', false),
-           (DEFAULT, 'orgname3', '$2a$10$f17jjX0NASQWYOln23Ogk.ePXm0TpAs2oq.k4.YOGQGTnkOvZlD/O', 'orgname3@blah.com', 'Org Name 3', TRUE, '555-555-3333', '300 fake street', 'fakewebsite3.com', true),
-           (DEFAULT, 'orgname4', '$2a$10$f17jjX0NASQWYOln23Ogk.ePXm0TpAs2oq.k4.YOGQGTnkOvZlD/O', 'orgname4@blah.com', 'Org Name 4', TRUE, '555-555-4444', '400 fake street', 'fakewebsite4.com', false),
-           (DEFAULT, 'orgname5', '$2a$10$f17jjX0NASQWYOln23Ogk.ePXm0TpAs2oq.k4.YOGQGTnkOvZlD/O', 'orgname5@blah.com', 'Org Name 5', TRUE, '555-555-5555', '500 fake street', 'fakewebsite5.com', false);
+    VALUES (DEFAULT, 'nycares', '$2a$10$f17jjX0NASQWYOln23Ogk.ePXm0TpAs2oq.k4.YOGQGTnkOvZlD/O', 'someone@nycares.org', 'New York Cares', TRUE, '(212) 228-5000', '65 Broadway, Fl 19, New York, NY 10006', 'nycares.org', false),
+           (DEFAULT, 'projectsunshine', '$2a$10$f17jjX0NASQWYOln23Ogk.ePXm0TpAs2oq.k4.YOGQGTnkOvZlD/O', 'someone@projectsunshine.org', 'Project Sunshine', TRUE, '(212) 354-8035', '211 E 43rd St, New York, NY 10017', 'projectsunshine.org', false),
+           (DEFAULT, 'nycommonpantry', '$2a$10$f17jjX0NASQWYOln23Ogk.ePXm0TpAs2oq.k4.YOGQGTnkOvZlD/O', 'someone@nycommonpantry.org', 'NY Common Pantry', TRUE, '917-720-9700', '8 East 109th Street, New York, NY 10029', 'nycommonpantry.org', false),
+           (DEFAULT, 'timesup', '$2a$10$f17jjX0NASQWYOln23Ogk.ePXm0TpAs2oq.k4.YOGQGTnkOvZlD/O', 'someone@timesup.org', 'Times Up', TRUE, '(212) 802-8222', '99 S 6th St, New York, NY 11211', 'times-up.org', false),
+           (DEFAULT, 'bottomlessclosetnyc', '$2a$10$f17jjX0NASQWYOln23Ogk.ePXm0TpAs2oq.k4.YOGQGTnkOvZlD/O', 'someone@bottomlesscloset', 'Bottomless Closet NYC', TRUE, '(212) 563-2499', '16 E 52nd St, Fl 15, New York, NY 10022', 'bottomlessclosetnyc.org', false);
 
--- INSERT INTO organizations
--- 		VALUES (DEFAULT, 6, '(000)555-1234', 'address goes here', 'website goes here', DEFAULT),
--- 					 (DEFAULT, 7, '(000)555-1234', 'address goes here', 'website goes here', DEFAULT),
--- 					 (DEFAULT, 8, '(000)555-1234', 'address goes here', 'website goes here', DEFAULT),
--- 					 (DEFAULT, 9, '(000)555-1234', 'address goes here', 'website goes here', DEFAULT),
--- 					 (DEFAULT, 10, '(000)555-1234', 'address goes here', 'website goes here', DEFAULT);
 
 INSERT INTO pings
 		VALUES (DEFAULT, 'michelle', 6, 'Monday 9:30AM', '5:00PM', '2 hours', false),

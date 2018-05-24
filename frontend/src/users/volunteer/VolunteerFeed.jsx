@@ -22,6 +22,8 @@ class VolunteerFeed extends Component {
 
 
 	render() {
+		const { user } = this.props
+		
 		return (
 			<div>
 				<h2>Beginning of map</h2>

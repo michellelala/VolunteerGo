@@ -32,7 +32,7 @@ CREATE TABLE users (
 
 CREATE TABLE pings (
     id SERIAL PRIMARY KEY,
-    volunteer_id INT REFERENCES users(id),
+    volunteer_username VARCHAR REFERENCES users(username),
     org_id INT REFERENCES users(id),
     time_sent VARCHAR,
     start_time VARCHAR,
@@ -63,9 +63,10 @@ INSERT INTO users
 -- 					 (DEFAULT, 9, '(000)555-1234', 'address goes here', 'website goes here', DEFAULT),
 -- 					 (DEFAULT, 10, '(000)555-1234', 'address goes here', 'website goes here', DEFAULT);
 
--- INSERT INTO pings
--- 		VALUES (DEFAULT, 1, 6, '5:00PM', '2 hours', false),
--- 					 (DEFAULT, 2, 6, '6:00PM', '1 hour', false),
--- 					 (DEFAULT, 3, 7, '5:30PM', '30 minutes', false),
--- 					 (DEFAULT, 4, 8, '3:00PM', '1 hour 30 minutes', true),
--- 					 (DEFAULT, 5, 10, '2:30PM', '4 hours', true);
+INSERT INTO pings
+		VALUES (DEFAULT, 'michelle', 6, 'Monday 9:30AM', '5:00PM', '2 hours', false),
+		             (DEFAULT, 'helen', 6, 'Tuesday 12:00PM', '4:00PM', '1 hour', true),
+					 (DEFAULT, 'david', 9, 'Monday 3:14PM', '6:00PM', '1 hour', false),
+					 (DEFAULT, 'princess', 7, 'Thursday 10:15AM', '5:30PM', '30 minutes', false),
+					 (DEFAULT, 'chicken', 8, 'Monday 8:00AM', '3:00PM', '1 hour 30 minutes', true),
+					 (DEFAULT, 'michelle', 10, 'Wednesday 11:09AM', '2:30PM', '4 hours', true);

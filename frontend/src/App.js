@@ -8,6 +8,7 @@ import Login from "./users/Login";
 import Register from "./users/Register";
 import Logout from "./users/Logout";
 import VolunteerFeed from "./users/volunteer/VolunteerFeed";
+import OrgFeed from "./users/org/OrgFeed";
 
 class App extends Component {
   constructor() {
@@ -49,8 +50,18 @@ class App extends Component {
   renderLogout = () => {
     return <Logout user={this.state.user} logoutUser={this.logoutUser} />
   }
-  renderVolunteerFeed = () => {
-    return <VolunteerFeed user={this.state.user} />
+  renderFeed = () => {
+    const { user } = this.state;
+    // Check for an active user
+    if (!user) { 
+      return <h1>You must first log in</h1>
+    }
+
+    if (user.org === true) { // Org logged in
+      return <OrgFeed user={user} />
+    } else if (user.org === false) { // Volunteer logged in
+      return <VolunteerFeed user={this.state.user} />
+    }
   }
 
   render() {
@@ -62,14 +73,14 @@ class App extends Component {
           <Link to="/login">Login</Link>{" . "}
           <Link to="/register">Register</Link>{" . "}
           <Link to="/logout">Logout</Link>{" . "}
-          <Link to="/v/home">Home</Link>{" "}
+          <Link to="/home">Home</Link>{" "}
         </nav>
 
         <Switch>
           <Route path="/login" render={ this.renderLogin } />
           <Route path="/register" component={ Register } />
           <Route path="/logout" render={ this.renderLogout } />
-          <Route path="/v/home" render={ this.renderVolunteerFeed } />
+          <Route path="/home" render={ this.renderFeed } />
         </Switch>
       </div>
     );

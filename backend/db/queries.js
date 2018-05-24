@@ -181,7 +181,7 @@ const getPingsSentByVolunteer = (req, res, next) => {
 const getPingsSentToOrg = (req, res, next) => {
 	db
 		.any(
-			"SELECT pings.id as ping_id, users.username, users.email, users.name, start_time, duration, accepted FROM pings JOIN users ON pings.volunteer_id=users.id WHERE org_id=${id};",
+			"SELECT pings.id as ping_id, users.username, users.email, users.name, time_sent, start_time, duration, accepted FROM pings JOIN users ON pings.volunteer_username=users.username WHERE org_id=${id};",
 			{
 				id: req.user.id
 			}
@@ -195,14 +195,14 @@ const getPingsSentToOrg = (req, res, next) => {
 		})
 }
 
-// ----- ADD A PING
+// ----- SEND A PING
 // ----- "/users/sendPing"
 const sendPing = (req, res, next) => {
 	db
 		.none(
-			"INSERT INTO pings VALUES (DEFAULT, ${volunteerId}, ${orgId}, ${timeSent}, ${startTime}, ${duration})",
+			"INSERT INTO pings VALUES (DEFAULT, ${volunteerUsername}, ${orgId}, ${timeSent}, ${startTime}, ${duration})",
 			{
-				volunteerId: req.user.id, // only volunteers can ping
+				volunterUsername: req.user.username, // only volunteers can ping
 				orgId: req.body.orgId,
 				timeSent: req.body.timeSent,
 				startTime: req.body.startTime,

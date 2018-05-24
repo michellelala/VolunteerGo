@@ -51,9 +51,9 @@ export default class Login extends Component {
 		const { usernameInput, passwordInput, message, loggedIn } = this.state;
 		// console.log("Login props: ", this.props)
 
-		// ***** CHANGE THIS ***** 
+
 		if (loggedIn) {
-      return <Redirect to="/register" />;
+      return <Redirect to="/home" />;
     }
 		
     return (

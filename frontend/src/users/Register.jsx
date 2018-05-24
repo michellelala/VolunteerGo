@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 import "../CSS/register.css";
@@ -34,7 +35,7 @@ export default class Register extends Component {
 			this.setState({
 				isOrganization: false, 
 				message: "" })
-		} else if (e.target.innerText === "Non-Profit Organization") {
+		} else if (e.target.innerText === "Non-Profit Org") {
 			this.setState({ 
 				isOrganization: true, 
 				message: "" })
@@ -135,16 +136,18 @@ export default class Register extends Component {
 	dependingOnUserType = () => {
 		const { isOrganization, telephoneInput, addressInput, websiteInput } = this.state;
 
-		if (isOrganization === false) {
+		if (isOrganization === false) { // Volunteer submit
 			return (
-				<div>
-					<button onClick={this.handleClearFields}>Clear fields</button>
-					<button onClick={this.handleRegisterSubmit}>
-						Register as a volunteer!
-						</button>
+				<div className="reg-submit-div">
+					<button onClick={this.handleClearFields} className="reg-clear">
+						Clear fields
+					</button>
+					<button onClick={this.handleRegisterSubmit} className="reg-submit">
+						Register
+					</button>
 				</div>
 			)
-		} else if (isOrganization === true) {
+		} else if (isOrganization === true) { // Org submit
 			return (
 				<div className="reg-org">
 					<input
@@ -152,44 +155,55 @@ export default class Register extends Component {
 						placeholder="Phone #"
 						name="telephoneInput"
 						onChange={this.handleInputChange}
+						className="reg-input-divs"
 					/>
 					<input
 						value={addressInput}
 						placeholder="Address"
 						name="addressInput"
 						onChange={this.handleInputChange}
+						className="reg-input-divs"
 					/>
 					<input
 						value={websiteInput}
 						placeholder="Website"
 						name="websiteInput"
 						onChange={this.handleInputChange}
+						className="reg-input-divs"
 					/>
 					<br />
-					<button onClick={this.handleRegisterSubmit}>Register as an non-profit!</button>
-					<button onClick={this.handleClearFields}>Clear fields</button>
+					<div>
+						<button onClick={this.handleClearFields} className="reg-clear">Clear fields</button>
+						<button onClick={this.handleRegisterSubmit} className="reg-submit">Register</button>
+					</div>
 				</div>
 			)
 		}
 	}
 
   render() {
-		const { emailInput, usernameInput, passwordInput, nameInput } = this.state;
+		const { emailInput, usernameInput, passwordInput, nameInput, isUserCreated } = this.state;
 
+		if (isUserCreated) {
+      return <Redirect to="/home" />;
+		}
+		
 		return (
-			<div className="register-parent-div">
-				<div className="register-div">
+			<div className="reg-parent-container">
+				<div className="reg-div">
 					<input
 						value={emailInput}
 						placeholder="Email"
 						name="emailInput"
 						onChange={this.handleInputChange}
+						className="reg-input-divs"
 					/>
 					<input
 						value={usernameInput}
 						placeholder="Username"
 						name="usernameInput"
 						onChange={this.handleInputChange}
+						className="reg-input-divs"
 					/>
 					<input
 						value={passwordInput}
@@ -197,22 +211,24 @@ export default class Register extends Component {
 						name="passwordInput"
 						type="password"
 						onChange={this.handleInputChange}
+						className="reg-input-divs"
 					/>
 					<input
 						value={nameInput}
 						placeholder="Volunteer/Organization Name"
 						name="nameInput"
 						onChange={this.handleInputChange}
+						className="reg-input-divs"
 					/>
 				</div>
 
-				<h3>I'm a...</h3>
+				<h3 className="reg-header">I'm a...</h3>
 				<div className="choose-user-type-div">
 					<div className="user-type" onClick={this.handleUserType}>
 						Volunteer 
 					</div>
 					<div className="user-type" onClick={this.handleUserType} name="organization"> 
-						Non-Profit Organization 
+						Non-Profit Org 
 					</div>
 				</div>
 
@@ -220,7 +236,7 @@ export default class Register extends Component {
 					{this.dependingOnUserType()}
 				</div>
 
-				{this.state.message}
+				<div className="reg-message">{this.state.message}</div>
 			</div>
   	);
 	}

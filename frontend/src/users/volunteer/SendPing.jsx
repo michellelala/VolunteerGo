@@ -42,7 +42,7 @@ export default class SendPing extends Component {
     // console.log("sendping state: ", this.state)
     return (
       <div>
-        <h1>You're in the SendPing component</h1>
+        <h3>Send Ping</h3>
 
         <form onSubmit={this.handleSendPing}>
           <p>What time are you available to start? {" "}

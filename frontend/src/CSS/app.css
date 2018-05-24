@@ -1,7 +1,7 @@
 /* 
 ----- Color Scheme -----
 - Hot Pink: DC127E or 220,18,126
-- Yellow: EDEF2C or 237,239,44
+- Yellow: fcff2f or rgb(252, 255, 47)
 - Turquoise: 22ABDF or 34,171,223
 - Light Blue: E5EFF8 or 229,239,248
 - Sand: F8E8C6 or 248,232,198
@@ -29,11 +29,14 @@ nav {
 }
 
 nav a {
+  text-transform: uppercase;
   color: whitesmoke;
   text-decoration: none;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
 }
 
 nav a:hover { 
-  color: #EDEF2C;
+  color: rgb(252, 255, 47);
+  border-bottom: 2px solid #DC127E;
+  transition: 0.2s;
 }

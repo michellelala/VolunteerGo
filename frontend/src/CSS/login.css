@@ -1,7 +1,7 @@
 /* 
 ----- Color Scheme -----
 - Hot Pink: DC127E or 220,18,126
-- Yellow: EDEF2C or 237,239,44
+- Yellow: fcff2f or 255,255,47
 - Turquoise: 22ABDF or 34,171,223
 - Light Blue: E5EFF8 or 229,239,248
 - Sand: F8E8C6 or 248,232,198
@@ -21,11 +21,6 @@
 .login-submit {
   font-family: "Noto Sans", sans-serif;
   font-size: 18px;
-}
-
-.login-username,
-.login-password,
-.login-submit {
   width: 70%;
   padding: 10px 20px;
   margin: 10px;
@@ -43,7 +38,6 @@
   width: 50%;
   color: whitesmoke;
 }
-
 .login-submit:hover {
   color: #DC127E;
   background-color: whitesmoke;

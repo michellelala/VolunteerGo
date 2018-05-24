@@ -72,15 +72,15 @@ class App extends Component {
         <nav>
           <Link to="/login">Login</Link>{" . "}
           <Link to="/register">Register</Link>{" . "}
-          <Link to="/logout">Logout</Link>{" . "}
-          <Link to="/home">Home</Link>{" "}
+          <Link to="/home">Home</Link>{" . "}
+          <Link to="/logout">Logout</Link>
         </nav>
 
         <Switch>
           <Route path="/login" render={ this.renderLogin } />
           <Route path="/register" component={ Register } />
-          <Route path="/logout" render={ this.renderLogout } />
           <Route path="/home" render={ this.renderFeed } />
+          <Route path="/logout" render={ this.renderLogout } />
         </Switch>
       </div>
     );

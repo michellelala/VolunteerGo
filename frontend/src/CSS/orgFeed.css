@@ -1,0 +1,22 @@
+/* 
+----- Color Scheme -----
+- Hot Pink: DC127E or 220,18,126
+- Yellow: EDEF2C or 237,239,44
+- Turquoise: 22ABDF or 34,171,223
+- Light Blue: E5EFF8 or 229,239,248
+- Sand: F8E8C6 or 248,232,198
+--------- End ---------
+*/
+
+.org-feed-ping-container {
+  width: 80%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.org-feed-ping-div {
+  background-color: #e5eff8;
+  padding: 20px;
+}

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import "../../CSS/orgFeed.css";
+
 export default class OrgFeed extends Component {
   state = {
     pings: []
@@ -29,11 +31,11 @@ export default class OrgFeed extends Component {
     return (
       <div>
         <h2> You're in the organization feed. </h2>
-        <div>
+        <div className="org-feed-ping-container">
           {
             pings.map(ping => {
               return (
-                <div name={ping.id}>
+                <div name={ping.id} className="org-feed-ping-div">
                   Volunteer Name: {ping.name}<br />
                   Volunteer Username: {ping.username}<br />
                   Sent At: {ping.time_sent}<br />

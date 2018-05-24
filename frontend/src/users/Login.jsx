@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
+import "../CSS/login.css";
+
 export default class Login extends Component {
   constructor() {
 		super()
@@ -57,24 +59,29 @@ export default class Login extends Component {
     }
 		
     return (
-      <div>
+      <div className="login-container">
 				<form onSubmit={this.handleLoginFormSubmit}>
 					<input
 						value={usernameInput}
 						placeholder="Username"
 						name="usernameInput"
 						onChange={this.handleInputChange}
+						className="login-username"
 					/>
+					<br />
 					<input
 						value={passwordInput}
 						placeholder="Password"
 						name="passwordInput"
 						type="password"
 						onChange={this.handleInputChange}
+						className="login-password"
 					/>
+					<br />
 					<input
 						type="submit"
 						value="Login"
+						className="login-submit"
 					/>
 				</form>
 				{message}

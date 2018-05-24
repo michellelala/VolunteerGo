@@ -178,7 +178,6 @@ export default class Register extends Component {
 
 		return (
 			<div className="register-parent-div">
-				<h3>Hi, you're in the Register component</h3>
 				<div className="register-div">
 					<input
 						value={emailInput}

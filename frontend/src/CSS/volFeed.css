@@ -1,0 +1,45 @@
+/* 
+----- Color Scheme -----
+- Hot Pink: DC127E or 220,18,126
+- Yellow: EDEF2C or 237,239,44
+- Turquoise: 22ABDF or 34,171,223
+- Light Blue: E5EFF8 or 229,239,248
+- Sand: F8E8C6 or 248,232,198
+--------- End ---------
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+.vol-feed-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px;
+  margin: 20px;
+}
+
+.send-ping-parent-container {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.send-ping-submit {
+  padding: 10px;
+  border-radius: 14px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 0.8em;
+}
+
+select {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 1em;
+  background-color: white;
+  border: 1px solid #e5eff8;
+  color: #DC127E;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}

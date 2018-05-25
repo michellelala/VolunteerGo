@@ -65,15 +65,16 @@ class App extends Component {
   }
 
   render() {
+    const { user, activeUser } = this.state;
     console.log("App state: ", this.state)
 
     return (
       <div>
         <nav>
-          <Link to="/login">Login</Link>{" . "}
-          <Link to="/register">Register</Link>{" . "}
-          <Link to="/home">Home</Link>{" . "}
-          <Link to="/logout">Logout</Link>
+          { activeUser ? "" : <div className="nav-link-container"><Link to="/login">Login</Link></div> }
+          { activeUser ? "" : <div className="nav-link-container"><Link to="/register">Register</Link></div> }
+          { activeUser ? <div className="nav-link-container"><Link to="/home">Home</Link></div> : "" }
+          { user ? <div className="nav-link-container"><Link to="/logout">Logout</Link></div> : "" }
         </nav>
 
         <Switch>

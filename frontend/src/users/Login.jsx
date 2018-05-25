@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 import "../CSS/login.css";
@@ -84,7 +84,13 @@ export default class Login extends Component {
 						className="login-submit"
 					/>
 				</form>
-				{message}
+				<div className="error-message">{this.state.message}</div>
+
+				<div className="reg-login-div">
+					<h3>Don't have an account? {" "}
+						<Link to="/register">Register here</Link>.
+					</h3>
+				</div>
 			</div>
     );
   }

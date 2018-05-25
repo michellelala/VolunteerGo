@@ -16,6 +16,7 @@
   margin: 40px auto;
   background-color: white;
 }
+
 .login-username,
 .login-password,
 .login-submit {
@@ -33,7 +34,7 @@
   transition: 0.5s;
 }
 
-.login-submit {
+/* .login-submit {
   background-color: #22ABDF;
   width: 50%;
   color: whitesmoke;
@@ -42,4 +43,4 @@
   color: #DC127E;
   background-color: whitesmoke;
   transition: 0.5s;
-}
+} */

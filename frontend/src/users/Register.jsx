@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 import "../CSS/register.css";
@@ -80,7 +80,9 @@ export default class Register extends Component {
 						message: `Successfully registered new volunteer!`
 					})
 				})
-				// TODO: Add then statement and redirect to user profile
+				.then(() => {
+					return <Redirect to="/home" />
+				})
 				.catch(err => {
 					this.setState({ 
 						message: "Sorry, that email or username is in use already."
@@ -103,7 +105,9 @@ export default class Register extends Component {
 							message: `Successfully registered new organization!`
 						})
 					})
-					// TODO: Add then statement and redirect to user profile 
+					.then(() => {
+						return <Redirect to="/home" />
+					})
 					.catch(err => {
 						this.setState({ 
 							message: "Sorry, that email or username is in use already."
@@ -236,7 +240,13 @@ export default class Register extends Component {
 					{this.dependingOnUserType()}
 				</div>
 
-				<div className="reg-message">{this.state.message}</div>
+				<div className="error-message">{this.state.message}</div>
+
+				<div className="reg-or-login-div">
+					<h3>Already have an account? {" "}
+						<Link to="/login">Login here</Link>.
+					</h3>
+				</div>
 			</div>
   	);
 	}

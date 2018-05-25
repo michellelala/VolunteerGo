@@ -13,7 +13,8 @@
   padding: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 0 auto;
 }
 
 .org-feed-ping-div {

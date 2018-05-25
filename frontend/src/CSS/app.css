@@ -11,7 +11,7 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
 html {
-  background-color: whitesmoke;
+  background-color: #f8f8f8;
   color: #111;
   text-align: center;
   justify-content: center;
@@ -23,20 +23,65 @@ h1, h2, h3, h4 {
   color: #DC127E;
 }
 
+/* ----- Nav Bar guidelines ----- */
 nav {
-  padding: 40px 20px;
+  /* padding: 40px 20px; */
   background-color: #22ABDF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+  /* border-bottom: 4px solid #22ABDF; */
 }
-
+.nav-link-container {
+  height: 100%;
+  padding: 40px 20px;
+  border-bottom: 4px solid #22ABDF;
+}
+.nav-link-container:hover {
+  border-bottom: 4px solid #DC127E;
+  color: rgb(252, 255, 47);
+  transition: 0.5s;
+}
 nav a {
   text-transform: uppercase;
   color: whitesmoke;
   text-decoration: none;
   letter-spacing: 0.1em;
+  margin: 1em;
 }
-
 nav a:hover { 
   color: rgb(252, 255, 47);
-  border-bottom: 2px solid #DC127E;
+  /* border-bottom: 2px solid #DC127E; */
   transition: 0.2s;
+}
+
+/* ----- Link guidelines ----- */
+a {
+  color: #DC127E;
+}
+a:hover {
+  color: rgb(252, 255, 47)
+}
+
+/* ----- Submit/Button guidelines ----- */
+button,
+input[type="submit"] {
+  font-family: "Noto Sans", sans-serif;
+  background-color: #22ABDF;
+  width: 40%;
+  height: 100%;
+  color: whitesmoke;
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 20px;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    color: #DC127E;
+    background-color: whitesmoke;
+    transition: 0.5s;
 }

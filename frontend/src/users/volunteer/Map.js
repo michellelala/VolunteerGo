@@ -15,17 +15,17 @@ export default class Map extends Component {
 
 	loadMap() {
 		if (this.props && this.props.google) {
+			const { google } = this.props;
+
 			if (navigator.geolocation) {
-				const { google } = this.props;
 				let pos, infoWindow;
 				const maps = google.maps;
-
 				const mapRef = this.refs.map;
 				const node = ReactDOM.findDOMNode(mapRef);
 
 				let zoom = 14;
-				let lat = 40.730610;
-				let lng = -73.935242;
+				let lat = 40.730610; // default lat
+				let lng = -73.935242; // default long == NYC
 				const center = new maps.LatLng(lat, lng)
 				const mapConfig = Object.assign({}, {
 					center: center,
@@ -33,15 +33,14 @@ export default class Map extends Component {
 				})
 				this.map = new maps.Map(node, mapConfig)
 				
+				// Find the user's current location
 				navigator.geolocation.getCurrentPosition((position) => {
-					infoWindow = new google.maps.InfoWindow;
+					infoWindow = new google.maps.InfoWindow();
 
 					pos = {
 						lat: position.coords.latitude,
 						lng: position.coords.longitude
 					}
-
-					console.log("pos: ", pos)
 
 					const marker = new google.maps.Marker({
 						position: pos,
@@ -62,6 +61,8 @@ export default class Map extends Component {
 					let infoWindow = new this.props.google.maps.InfoWindow;
 					this.handleLocationError(false, infoWindow, this.map.getCenter());
 				}
+
+				const geocode = new google.maps.Geocoder();
 		}
 	}
 
@@ -74,7 +75,7 @@ export default class Map extends Component {
 	}
 
 	render() {
-
+		console.log("map props all orgs: ", this.props.allOrgs)
 		const style = {
 			width: "50vw",
 			height: "50vh"

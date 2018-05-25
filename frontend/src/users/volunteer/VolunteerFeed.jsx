@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { GoogleApiWrapper } from "google-maps-react";
 import axios from "axios";
-
 import googleKey from "../../google-key.js"
+import "../../CSS/volFeed.css";
 // import Geolocation from "react-geolocation";
 
 import MapContainer from "./MapContainer";
@@ -12,7 +12,8 @@ class VolunteerFeed extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			allOrgs: []
+			allOrgs: [],
+			message: ""
 		}
 	}
 
@@ -25,22 +26,31 @@ class VolunteerFeed extends Component {
 					allOrgs: res.data
 				})
 			})
+			.catch(err => {
+				this.setState({
+					message: "There was an error. Sorry for the inconvenience!"
+				})
+			})
 	}
 
 	componentDidUpdate() {
 	}
 
+	renderSendPing = () => {
+		return <SendPing />
+	}
+
 
 	render() {
-		const { user } = this.props
+		const { user } = this.props;
+		const { allOrgs, message } = this.state;
 		
 		return (
-			<div>
-				<h2>Beginning of map</h2>
-					<MapContainer google={this.props.google} />
-				<h2>End of map</h2>
-
+			<div className="vol-feed-container">
+				{/* {this.renderSendPing} */}
 				<SendPing />
+				<MapContainer google={this.props.google} allOrgs={allOrgs} />
+				{message}
 			</div>
 		)
 	}

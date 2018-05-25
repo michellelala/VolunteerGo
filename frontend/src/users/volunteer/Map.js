@@ -15,7 +15,7 @@ export default class Map extends Component {
 
 	loadMap() {
 		if (this.props && this.props.google) {
-			const { google } = this.props;
+			const { google, allOrgs } = this.props;
 
 			if (navigator.geolocation) {
 				let pos, infoWindow;
@@ -45,7 +45,7 @@ export default class Map extends Component {
 					const marker = new google.maps.Marker({
 						position: pos,
 						map: this.map,
-						title: "current position!"
+						title: "Current position."
 					})
 
 					infoWindow.setPosition(pos)
@@ -58,12 +58,38 @@ export default class Map extends Component {
 					);
 				} else {
 					// Browser doesn't support Geolocation
-					let infoWindow = new this.props.google.maps.InfoWindow;
+					let infoWindow = new google.maps.InfoWindow;
 					this.handleLocationError(false, infoWindow, this.map.getCenter());
 				}
 
-				const geocode = new google.maps.Geocoder();
+				const geocoder = new google.maps.Geocoder();
+				// Map through orgs to create an array of org addresses
+				const orgAddresses = allOrgs.map(org => org.address)
+				orgAddresses.map(orgAddress => {
+					this.geocodeAddress(geocoder, this.map, orgAddress)
+				})
+
 		}
+	}
+
+	// ----- Helper Functions -----
+	geocodeAddress = (geocoder, resultsMap, address) => {
+		const { google } = this.props;
+		console.log('youre in geocodeAddress.')
+		console.log("geocoder: ", geocoder)
+		console.log("resultsMap: ", resultsMap)
+		console.log("address: ", address)
+
+		geocoder.geocode({ "address": address }, function(results, status) {
+			if (status === "OK") {
+				const marker = new google.maps.Marker({
+					map: resultsMap,
+					position: results[0].geometry.location
+				})
+			} else {
+				alert('Geocode was not successful for the following reason: ' + status);
+			}
+		})
 	}
 
 	handleLocationError = (browserHasGeolocation, infoWindow, pos) => {
@@ -75,11 +101,7 @@ export default class Map extends Component {
 	}
 
 	render() {
-		console.log("map props all orgs: ", this.props.allOrgs)
-		const style = {
-			width: "50vw",
-			height: "50vh"
-		}
+		const style = { width: "50vw", height: "50vh" }
 
 		return (
 			<div ref="map" style={style}>

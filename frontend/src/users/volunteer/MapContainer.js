@@ -9,7 +9,6 @@ import Map from "./Map";
 export class MapContainer extends Component {
 	render() {
 		const { allOrgs } = this.props;
-		console.log("map container: ", allOrgs)
 
 		if (!this.props.loaded) {
 			return <div>Loading map...</div>

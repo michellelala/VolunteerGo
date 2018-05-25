@@ -21,7 +21,6 @@ class VolunteerFeed extends Component {
 		axios
 			.get("/users/getAllOrgs")
 			.then((res) => {
-				console.log("data: ", res.data)
 				this.setState({
 					allOrgs: res.data
 				})
@@ -39,18 +38,39 @@ class VolunteerFeed extends Component {
 	renderSendPing = () => {
 		return <SendPing />
 	}
+	renderOrgsList = () => {
+		const { allOrgs } = this.state;
+
+		return (
+			<div className="vol-feed-orgs-div">
+				{allOrgs.map(org => {
+					return (
+						<div className="single-org">
+							<h4>{org.name}</h4>
+							Tel: {org.telephone}<br/>
+							Address: {org.address}<br/>
+							Web: {org.website}
+						</div>
+					)
+				})}
+			</div>
+		)
+	}
 
 
 	render() {
 		const { user } = this.props;
 		const { allOrgs, message } = this.state;
+		console.log("all orgs: ", allOrgs)
 		
 		return (
-			<div className="vol-feed-container">
-				{/* {this.renderSendPing} */}
-				<SendPing />
-				<MapContainer google={this.props.google} allOrgs={allOrgs} />
-				{message}
+			<div className="vol-feed-parent-container">
+					{this.renderOrgsList()}
+				<div className="vol-feed-map-and-ping-container">
+					<MapContainer google={this.props.google} allOrgs={allOrgs} />
+					<SendPing />
+				</div>
+					{message}
 			</div>
 		)
 	}

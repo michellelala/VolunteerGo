@@ -4,6 +4,7 @@ import axios from "axios";
 
 import "../CSS/login.css";
 
+
 export default class Login extends Component {
   constructor() {
 		super()
@@ -86,7 +87,7 @@ export default class Login extends Component {
 				</form>
 				<div className="error-message">{this.state.message}</div>
 
-				<div className="reg-login-div">
+				<div className="reg-or-login-div">
 					<h3>Don't have an account? {" "}
 						<Link to="/register">Register here</Link>.
 					</h3>

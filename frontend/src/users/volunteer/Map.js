@@ -59,10 +59,13 @@ export default class Map extends Component {
 					);
 					const geocoder = new google.maps.Geocoder();
 					// Map through orgs to create an array of org addresses
-					const orgAddresses = allOrgs.map(org => org.address)
+					// const orgAddresses = allOrgs.map(org => org.address)
 					// Map through org addresses and create a market for each using helper func
-					orgAddresses.map(orgAddress => {
-						this.geocodeAddress(geocoder, this.map, orgAddress)
+					// orgAddresses.map(orgAddress => {
+					// 	this.geocodeAddress(geocoder, this.map, orgAddress)
+					// })
+					allOrgs.map(org => {
+						this.geocodeAddress(geocoder, this.map, org.address, org.name)
 					})
 				} else {
 					// Browser doesn't support Geolocation, user can't be located
@@ -74,7 +77,7 @@ export default class Map extends Component {
 	}
 
 	// ----- Helper Functions -----
-	geocodeAddress = (geocoder, resultsMap, address) => {
+	geocodeAddress = (geocoder, resultsMap, address, name) => {
 		const { google } = this.props;
 		geocoder.geocode({ "address": address }, function(results, status) {
 			// If address is valid, then create a new marker using the coords
@@ -83,6 +86,9 @@ export default class Map extends Component {
 					map: resultsMap,
 					position: results[0].geometry.location
 				})
+				let infoWindow = new google.maps.InfoWindow()
+				infoWindow.setContent(name)
+				infoWindow.open(resultsMap)
 			} else {
 				alert('Geocode was not successful for the following reason: ' + status);
 			}

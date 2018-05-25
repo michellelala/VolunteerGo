@@ -11,18 +11,19 @@ export default class Map extends Component {
 		if (prevProps.google !== this.props.google) {
 			this.loadMap();
 		}
+		this.loadMap();
 	}
 
 	loadMap() {
 		if (this.props && this.props.google) {
 			const { google, allOrgs } = this.props;
-
+			// User has to approve location tracking
 			if (navigator.geolocation) {
 				let pos, infoWindow;
 				const maps = google.maps;
 				const mapRef = this.refs.map;
 				const node = ReactDOM.findDOMNode(mapRef);
-
+				
 				let zoom = 14;
 				let lat = 40.730610; // default lat
 				let lng = -73.935242; // default long == NYC
@@ -36,18 +37,18 @@ export default class Map extends Component {
 				// Find the user's current location
 				navigator.geolocation.getCurrentPosition((position) => {
 					infoWindow = new google.maps.InfoWindow();
-
+					// Set pos variable to user's current position
 					pos = {
 						lat: position.coords.latitude,
 						lng: position.coords.longitude
 					}
-
+					// Create new marker, with position set to user's current position
 					const marker = new google.maps.Marker({
 						position: pos,
 						map: this.map,
 						title: "Current position."
 					})
-
+					// Set the info window to current posiiton
 					infoWindow.setPosition(pos)
 					infoWindow.setContent("You are here.")
 					infoWindow.open(this.map)
@@ -56,18 +57,18 @@ export default class Map extends Component {
 						this.handleLocationError(true, infoWindow, this.map.getCenter());
 						}
 					);
+					const geocoder = new google.maps.Geocoder();
+					// Map through orgs to create an array of org addresses
+					const orgAddresses = allOrgs.map(org => org.address)
+					// Map through org addresses and create a market for each using helper func
+					orgAddresses.map(orgAddress => {
+						this.geocodeAddress(geocoder, this.map, orgAddress)
+					})
 				} else {
-					// Browser doesn't support Geolocation
+					// Browser doesn't support Geolocation, user can't be located
 					let infoWindow = new google.maps.InfoWindow;
 					this.handleLocationError(false, infoWindow, this.map.getCenter());
 				}
-
-				const geocoder = new google.maps.Geocoder();
-				// Map through orgs to create an array of org addresses
-				const orgAddresses = allOrgs.map(org => org.address)
-				orgAddresses.map(orgAddress => {
-					this.geocodeAddress(geocoder, this.map, orgAddress)
-				})
 
 		}
 	}
@@ -75,14 +76,10 @@ export default class Map extends Component {
 	// ----- Helper Functions -----
 	geocodeAddress = (geocoder, resultsMap, address) => {
 		const { google } = this.props;
-		console.log('youre in geocodeAddress.')
-		console.log("geocoder: ", geocoder)
-		console.log("resultsMap: ", resultsMap)
-		console.log("address: ", address)
-
 		geocoder.geocode({ "address": address }, function(results, status) {
+			// If address is valid, then create a new marker using the coords
 			if (status === "OK") {
-				const marker = new google.maps.Marker({
+				let marker = new google.maps.Marker({
 					map: resultsMap,
 					position: results[0].geometry.location
 				})

@@ -45,7 +45,7 @@ class VolunteerFeed extends Component {
 			<div className="vol-feed-orgs-div">
 				{allOrgs.map(org => {
 					return (
-						<div className="single-org">
+						<div className="single-org" key={org.name}>
 							<h4>{org.name}</h4>
 							Tel: {org.telephone}<br/>
 							Address: {org.address}<br/>
@@ -65,7 +65,7 @@ class VolunteerFeed extends Component {
 		
 		return (
 			<div className="vol-feed-parent-container">
-					{this.renderOrgsList()}
+				{this.renderOrgsList()}
 				<div className="vol-feed-map-and-ping-container">
 					<MapContainer google={this.props.google} allOrgs={allOrgs} />
 					<SendPing />

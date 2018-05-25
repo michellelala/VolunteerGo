@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import axios from "axios";
 
 import "./CSS/app.css";
@@ -42,6 +42,11 @@ class App extends Component {
           });
         });
   }
+  // redirectToLogin = () => {
+  //   setTimeout(() => {
+  //     return <Redirect to="/login" />
+  //   }, 1000)
+  // }
 
   // --------------- Rendering things --------------- //
   renderLogin = () => {
@@ -54,7 +59,11 @@ class App extends Component {
     const { user } = this.state;
     // Check for an active user
     if (!user) { 
-      return <h1>You must first log in</h1>
+      return (
+        <div>
+          <h2>You must login first!</h2>
+        </div>
+      )
     }
 
     if (user.org === true) { // Org logged in
@@ -66,10 +75,9 @@ class App extends Component {
 
   render() {
     const { user, activeUser } = this.state;
-    console.log("App state: ", this.state)
 
     return (
-      <div>
+      <div className="app">
         <nav>
           { activeUser ? "" : <div className="nav-link-container"><Link to="/login">Login</Link></div> }
           { activeUser ? "" : <div className="nav-link-container"><Link to="/register">Register</Link></div> }

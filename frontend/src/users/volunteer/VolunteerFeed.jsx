@@ -13,6 +13,7 @@ class VolunteerFeed extends Component {
 		super(props)
 		this.state = {
 			allOrgs: [],
+			selectedOrg: "",
 			message: ""
 		}
 	}
@@ -32,7 +33,17 @@ class VolunteerFeed extends Component {
 			})
 	}
 
-	componentDidUpdate() {
+	handleOrgClick = (e) => {
+		const { allOrgs } = this.state;
+
+		for (let i = 0; i < allOrgs.length; i++) {
+			if (allOrgs[i].username === e.target.id) {
+				this.setState({
+					selectedOrg: allOrgs[i]
+				})
+				return;
+			}
+		} 
 	}
 
 	renderSendPing = () => {
@@ -45,8 +56,8 @@ class VolunteerFeed extends Component {
 			<div className="vol-feed-orgs-div">
 				{allOrgs.map(org => {
 					return (
-						<div className="single-org" key={org.name}>
-							<h4>{org.name}</h4>
+						<div className="single-org" onClick={this.handleOrgClick} id={org.username} key={org.name}>
+							<span className="org-name">{org.name}</span><br />
 							Tel: {org.telephone}<br/>
 							Address: {org.address}<br/>
 							Web: {org.website}
@@ -60,14 +71,13 @@ class VolunteerFeed extends Component {
 
 	render() {
 		const { user } = this.props;
-		const { allOrgs, message } = this.state;
-		console.log("all orgs: ", allOrgs)
+		const { allOrgs, selectedOrg, message } = this.state;
 		
 		return (
 			<div className="vol-feed-parent-container">
 				{this.renderOrgsList()}
 				<div className="vol-feed-map-and-ping-container">
-					<MapContainer google={this.props.google} allOrgs={allOrgs} />
+					<MapContainer google={this.props.google} allOrgs={allOrgs} selectedOrg={selectedOrg} />
 					<SendPing />
 				</div>
 					{message}

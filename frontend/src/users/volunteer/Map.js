@@ -16,7 +16,8 @@ export default class Map extends Component {
 
 	loadMap() {
 		if (this.props && this.props.google) {
-			const { google, allOrgs } = this.props;
+			const { google, allOrgs, selectedOrg } = this.props;
+			console.log("selected org: ", selectedOrg)
 			// User has to approve location tracking
 			if (navigator.geolocation) {
 				let pos, infoWindow;

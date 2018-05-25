@@ -13,7 +13,10 @@
     padding: 50px;
     width: 40%;
     margin: 40px auto;
-    background-color: white;
+    background-color: #f8f8f8;
+    -webkit-box-shadow: 5px 5px 24px 1px rgba(0,0,0,0.3);
+    -moz-box-shadow: 5px 5px 24px 1px rgba(0,0,0,0.3);
+    box-shadow: 5px 5px 24px 1px rgba(0,0,0,0.3);
 }
 
 .reg-div {
@@ -48,17 +51,14 @@
 }
 
 .user-type {
-    /* border: 1px solid #E5EFF8;
-    background-color: #E5EFF8; */
     padding: 10px 5px;
     margin: 5px;
     width: 40%;
-    border: 4px solid white;
+    border: 4px solid #f8f8f8;
 }
 .user-type:hover {
-    /* background-color: #22ABDF; */
-    color: #DC127E;
-    border: 4px solid #fcff2f;
+    color: #22ABDF;
+    border-bottom: 4px solid #fcff2f;
     transition: 0.5s;
 }
 
@@ -93,5 +93,5 @@
 /* ----- Also used in Login component ----- */
 .reg-or-login-div {
     padding: 20px;
-    background-color: #f8f8f8;
+    background-color: #fff;
 }

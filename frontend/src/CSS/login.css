@@ -14,7 +14,11 @@
   padding: 50px;
   width: 40%;
   margin: 40px auto;
-  background-color: white;
+  background-color: #f8f8f8;
+  -webkit-box-shadow: 5px 5px 24px 1px rgba(0,0,0,0.3);
+  -moz-box-shadow: 5px 5px 24px 1px rgba(0,0,0,0.3);
+  box-shadow: 5px 5px 24px 1px rgba(0,0,0,0.3);
+
 }
 
 .login-username,

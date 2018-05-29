@@ -72,13 +72,15 @@ class VolunteerFeed extends Component {
 	render() {
 		const { user } = this.props;
 		const { allOrgs, selectedOrg, message } = this.state;
+
+		console.log("state in volfeed: ", this.state)
 		
 		return (
 			<div className="vol-feed-parent-container">
 				{this.renderOrgsList()}
 				<div className="vol-feed-map-and-ping-container">
 					<MapContainer google={this.props.google} allOrgs={allOrgs} selectedOrg={selectedOrg} />
-					<SendPing />
+					{ selectedOrg ? <SendPing /> : "" }
 				</div>
 					{message}
 			</div>

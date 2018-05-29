@@ -33,8 +33,7 @@ export default class Login extends Component {
 				password: passwordInput
 			})
 			.then(res => {
-				// console.log("data from /users/login axios call: ", res.data)
-				this.props.setUser(res.data)
+				this.props.setUser()
 				this.setState({
 					usernameInput: "",
 					passwordInput: "",

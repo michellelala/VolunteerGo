@@ -8,6 +8,7 @@ import Login from "./users/Login";
 import Register from "./users/Register";
 import Logout from "./users/Logout";
 import VolunteerFeed from "./users/volunteer/VolunteerFeed";
+import PingHistory from "./users/volunteer/PingHistory";
 import OrgFeed from "./users/org/OrgFeed";
 
 class App extends Component {
@@ -19,14 +20,19 @@ class App extends Component {
     };
   }
 
+
+  componentDidMount() {
+    this.setUser()
+  }
+
   // --------------- Helper Functions --------------- //
-  setUser = user => {
+  setUser = () => {
     // Call to grab user type from db and set it to `user` in state
     axios
       .get("/users/getUser")
       .then(res => {
         this.setState({
-          user: {...user, org: res.data.user.org},
+          user: res.data.user,
           activeUser: true
         });
       })
@@ -42,11 +48,6 @@ class App extends Component {
           });
         });
   }
-  // redirectToLogin = () => {
-  //   setTimeout(() => {
-  //     return <Redirect to="/login" />
-  //   }, 1000)
-  // }
 
   // --------------- Rendering things --------------- //
   renderLogin = () => {
@@ -72,6 +73,16 @@ class App extends Component {
       return <VolunteerFeed user={this.state.user} />
     }
   }
+  // renderPingHistory = () => {
+  //   const { user } = this.state;
+  //   if (user !== null) {
+  //     if (user.org === false) { // Volunteer logged in
+  //       return <PingHistory user={user} />
+  //     } else if (user.org === true) {
+  //       return <h3 className="error-message">You must be a volunteer to view this page.</h3>
+  //     }
+  //   } 
+  // }
 
   render() {
     const { user, activeUser } = this.state;
@@ -82,6 +93,7 @@ class App extends Component {
           { activeUser ? "" : <div className="nav-link-container"><Link to="/login">Login</Link></div> }
           { activeUser ? "" : <div className="nav-link-container"><Link to="/register">Register</Link></div> }
           { activeUser ? <div className="nav-link-container"><Link to="/home">Home</Link></div> : "" }
+          {/* { activeUser ? <div className="nav-link-container"><Link to="/history">Ping History</Link></div> : "" } */}
           { user ? <div className="nav-link-container"><Link to="/logout">Logout</Link></div> : "" }
         </nav>
 
@@ -89,6 +101,7 @@ class App extends Component {
           <Route path="/login" render={ this.renderLogin } />
           <Route path="/register" component={ Register } />
           <Route path="/home" render={ this.renderFeed } />
+          <Route path="/history" render={ this.renderPingHistory } />
           <Route path="/logout" render={ this.renderLogout } />
         </Switch>
       </div>

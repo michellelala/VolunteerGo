@@ -69,7 +69,7 @@ const logoutUser = (req, res, next) => {
 // ----- "/users/getUser"
 const getUser = (req, res, next) => {
   db
-    .one("SELECT username, email, org FROM users WHERE username=${username}", {
+    .one("SELECT username, name, email, org FROM users WHERE username=${username}", {
       username: req.user.username
     })
     .then(data => {

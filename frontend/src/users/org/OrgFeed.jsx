@@ -5,7 +5,9 @@ import "../../CSS/orgFeed.css";
 
 export default class OrgFeed extends Component {
   state = {
-    pings: []
+    pings: [],
+    accepted: [],
+    pending: []
   }
 
   componentDidMount() {
@@ -15,6 +17,14 @@ export default class OrgFeed extends Component {
         console.log("ALL PINGS SENT TO THIS ORG: ", res.data)
         this.setState({
           pings: res.data
+        })
+      })
+      .then(() => {
+        const { pings } = this.state;
+        pings.map(ping => {
+          if (ping.accepted) {
+            
+          }
         })
       })
   }

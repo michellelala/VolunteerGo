@@ -8,7 +8,7 @@ import Map from "./Map";
 // The parent of Map
 export class MapContainer extends Component {
 	render() {
-		const { allOrgs } = this.props;
+		const { allOrgs, selectedOrg } = this.props;
 
 		if (!this.props.loaded) {
 			return <div>Loading map...</div>
@@ -16,7 +16,7 @@ export class MapContainer extends Component {
 
 		return (
 			<div>
-				<Map google={this.props.google} allOrgs={allOrgs}/>
+				<Map google={this.props.google} allOrgs={allOrgs} selectedOrg={selectedOrg} />
 			</div>
 		)
 	}

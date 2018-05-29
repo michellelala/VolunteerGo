@@ -9,11 +9,12 @@ const passport = require("../auth/local");
 // ----- REGISTER A NEW VOLUNTEER - THEN LOGIN THE VOLUNTEER
 router.post("/register/volunteer", db.registerVolunteer,
   passport.authenticate("local"), (req, res) => {
-    delete req.user.password_digest;
+    // delete req.user.password_digest;
     res.json({
       id: req.user.id,
       username: req.user.username,
-      message: `${req.user.username} is logged in!`
+      name: req.user.name,
+      org: req.user.org
     })
 });
 // ----- REGISTER A NEW ORGANIZATION - THEN LOGIN THE ORG
@@ -23,16 +24,19 @@ router.post("/register/organization", db.registerOrganization,
     res.json({
       id: req.user.id,
       username: req.user.username,
-      message: `${req.user.username} is logged in!`
+      // message: `${req.user.username} is logged in!`
+      name: req.user.name,
+      org: req.user.org
     })
 });
 // ------ LOG IN USER
 router.post("/login", passport.authenticate("local"), (req, res) => {
-  delete req.user.password_digest;
+  // delete req.user.password_digest;
   res.json({
     id: req.user.id,
     username: req.user.username,
-    message: `${req.user.username} is logged in!`
+    name: req.user.name,
+    org: req.user.org
   })}
 );
 // ------ LOG OUT USER

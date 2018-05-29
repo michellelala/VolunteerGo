@@ -24,7 +24,13 @@ passport.use(
         if (!authHelpers.comparePassword(password, user.password_digest)) {
           return done(null, false);
         } else {
-          return done(null, { id: user.id, username: user.username });
+          // everything passes, we can send the following to the frontend:
+          return done(null, { 
+            id: user.id, 
+            username: user.username,
+            name: user.name,
+            org: user.org
+          });
         }
       })
       .catch(err => {

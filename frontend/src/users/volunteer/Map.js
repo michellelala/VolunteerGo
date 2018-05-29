@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 export default class Map extends Component {
 	componentDidMount() {
 		this.loadMap()
+		// console.log("props in Map CDM: ", this.props)
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -12,12 +13,18 @@ export default class Map extends Component {
 			this.loadMap();
 		}
 		this.loadMap();
+		// console.log("props in Map CDU: ", this.props)
+
+		if (prevProps.selectedOrg !== this.props.google) {
+			this.loadMap()
+		}
 	}
 
 	loadMap() {
 		if (this.props && this.props.google) {
 			const { google, allOrgs, selectedOrg } = this.props;
 			console.log("selected org: ", selectedOrg)
+
 			// User has to approve location tracking
 			if (navigator.geolocation) {
 				let pos, infoWindow;
@@ -26,8 +33,8 @@ export default class Map extends Component {
 				const node = ReactDOM.findDOMNode(mapRef);
 				
 				let zoom = 14;
-				let lat = 40.730610; // default lat
-				let lng = -73.935242; // default long == NYC
+				let lat = 40.730610; // default lat for NYC
+				let lng = -73.935242; // default long for NYC
 				const center = new maps.LatLng(lat, lng)
 				const mapConfig = Object.assign({}, {
 					center: center,
@@ -58,28 +65,43 @@ export default class Map extends Component {
 						this.handleLocationError(true, infoWindow, this.map.getCenter());
 						}
 					);
+
 					const geocoder = new google.maps.Geocoder();
-					// Map through orgs to create an array of org addresses
-					// const orgAddresses = allOrgs.map(org => org.address)
-					// Map through org addresses and create a market for each using helper func
-					// orgAddresses.map(orgAddress => {
-					// 	this.geocodeAddress(geocoder, this.map, orgAddress)
-					// })
+					// Map through all orgs and create a marker
 					allOrgs.map(org => {
 						this.geocodeAddress(geocoder, this.map, org.address, org.name)
 					})
-				} else {
-					// Browser doesn't support Geolocation, user can't be located
-					let infoWindow = new google.maps.InfoWindow;
-					this.handleLocationError(false, infoWindow, this.map.getCenter());
-				}
+			} else {
+				// Browser doesn't support Geolocation, user can't be located
+				let infoWindow = new google.maps.InfoWindow;
+				this.handleLocationError(false, infoWindow, this.map.getCenter());
+			}
 
+			if (selectedOrg) {
+				const { selectedOrg } = this.props;
+				const geocoder = new google.maps.Geocoder();
+				const infoWindow = new google.maps.InfoWindow();
+				
+			}
 		}
+			
 	}
 
-	// ----- Helper Functions -----
+	// ---------- Helper Functions ---------- //
+	handleOrgClick = (geocoder, resultsMap, clickedOrg, infoWindow) => {
+		const { google } = this.props;
+
+		geocoder.geocode({ "address": clickedOrg.address }, function(results, status) {
+			if (status === "OK") {
+				let pos = results[0].geometry.location
+				resultsMap.setCenter(pos)
+			}
+		})
+	}
+
 	geocodeAddress = (geocoder, resultsMap, address, name) => {
 		const { google } = this.props;
+
 		geocoder.geocode({ "address": address }, function(results, status) {
 			// If address is valid, then create a new marker using the coords
 			if (status === "OK") {
@@ -87,9 +109,11 @@ export default class Map extends Component {
 					map: resultsMap,
 					position: results[0].geometry.location
 				})
-				let infoWindow = new google.maps.InfoWindow()
-				infoWindow.setContent(name)
-				infoWindow.open(resultsMap)
+				console.log("results: ", results[0].geometry.location)
+				// TODO: Get infoWindows working with org markers
+				// let infoWindow = new google.maps.InfoWindow()
+				// infoWindow.setContent(name)
+				// infoWindow.open(resultsMap)
 			} else {
 				alert('Geocode was not successful for the following reason: ' + status);
 			}

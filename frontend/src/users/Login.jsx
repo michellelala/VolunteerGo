@@ -60,7 +60,7 @@ export default class Login extends Component {
 		
     return (
       <div className="login-container">
-				<form onSubmit={this.handleLoginFormSubmit}>
+				<form onSubmit={this.handleLoginFormSubmit} className="login-form">
 					<input
 						value={usernameInput}
 						placeholder="Username"

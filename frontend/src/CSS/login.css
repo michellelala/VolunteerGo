@@ -11,9 +11,9 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
 .login-container {
-  padding: 50px;
   width: 40%;
-  margin: 40px auto;
+  padding: 50px;
+  margin: 30px auto;
   background-color: #f8f8f8;
   -webkit-box-shadow: 5px 5px 24px 1px rgba(0,0,0,0.3);
   -moz-box-shadow: 5px 5px 24px 1px rgba(0,0,0,0.3);
@@ -38,13 +38,29 @@
   transition: 0.5s;
 }
 
-/* .login-submit {
-  background-color: #22ABDF;
-  width: 50%;
-  color: whitesmoke;
+
+/* ---------- Media Queries ---------- */
+@media all and (max-width: 600px) {
+  .login-container {
+    width: 100%;
+    margin: 20px auto;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .login-form {
+    width: 100%;
+  }
+
+  .login-username,
+  .login-password,
+  .login-submit {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: 1px solid #E5EFF8;
+  }
 }
-.login-submit:hover {
-  color: #DC127E;
-  background-color: whitesmoke;
-  transition: 0.5s;
-} */

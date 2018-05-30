@@ -95,3 +95,28 @@
     padding: 20px;
     background-color: #fff;
 }
+
+/* ---------- Media Queries ---------- */
+@media all and (max-width: 600px) {
+    .reg-parent-container {
+        width: 100%;
+        margin: 20px auto;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        padding: 0;    
+    }
+
+    .reg-input-divs {
+        font-family: "Noto Sans", sans-serif;
+        font-size: 18px;   
+        padding: 10px; 
+        border: 1px solid #E5EFF8;
+    }
+
+    .reg-or-login-div {
+        padding: 5px;
+        font-size: 0.8em;
+        margin: 0 auto;
+    }
+}

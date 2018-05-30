@@ -21,3 +21,19 @@
   background-color: #e5eff8;
   padding: 20px;
 }
+
+.org-feed-accepted-pings,
+.org-feed-pending-pings {
+  width: 80%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.org-feed-accepted-pings {
+  
+}
+.org-feed-pending-pings {
+
+}

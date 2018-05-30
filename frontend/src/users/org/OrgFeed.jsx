@@ -40,22 +40,42 @@ export default class OrgFeed extends Component {
 
     return (
       <div>
-        <h2> You're in the organization feed. </h2>
-        <div className="org-feed-ping-container">
-          {
-            pings.map(ping => {
-              return (
-                <div name={ping.id} className="org-feed-ping-div">
-                  Volunteer Name: {ping.name}<br />
-                  Volunteer Username: {ping.username}<br />
-                  Sent At: {ping.time_sent}<br />
-                  Can Start At: {ping.start_time}<br />
-                  For: {ping.duration}<br />
-                  {ping.accepted ? "You accepted this request." : "You have not accepted this request yet."}<br />
-                </div>
-              )
+        {pings[0] ? <h3>Accepted</h3> : <h3>No pings yet</h3> }
+        <div className="org-feed-accepted-pings">
+            {
+              pings.map(ping => {
+                if (ping.accepted) {
+                  return (
+                  <div name={ping.id} className="org-feed-ping-div">
+                    {ping.name}<br />
+                    @{ping.username}<br />
+                    Sent at: {ping.time_sent}<br />
+                    Start time: {ping.start_time}<br />
+                    Available for: {ping.duration}<br />
+                  </div>
+                )
+              }
             })
           }
+        </div>
+
+        {pings[0] ? <h3>Pending</h3> : ""}
+        <div className="org-feed-pending-pings">
+            {
+                pings.map(ping => {
+                  if (!ping.accepted) {
+                    return (
+                      <div name={ping.id} className="org-feed-ping-div" key={ping.name}>
+                        {ping.name}<br />
+                        @{ping.username}<br />
+                        Sent at: {ping.time_sent}<br />
+                        Start time: {ping.start_time}<br />
+                        Available for: {ping.duration}<br />
+                      </div>
+                    )
+                  }
+                })
+            }
         </div>
       </div>
     )

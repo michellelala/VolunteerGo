@@ -49,6 +49,7 @@ class VolunteerFeed extends Component {
 	renderSendPing = () => {
 		return <SendPing />
 	}
+	
 	renderOrgsList = () => {
 		const { allOrgs } = this.state;
 
@@ -58,9 +59,9 @@ class VolunteerFeed extends Component {
 					return (
 						<div className="single-org" onClick={this.handleOrgClick} id={org.username} key={org.name}>
 							<span className="org-name">{org.name}</span><br />
-							Tel: {org.telephone}<br/>
-							Address: {org.address}<br/>
-							Web: {org.website}
+							{org.telephone}<br/>
+							{org.website}<br/>
+							{org.address}
 						</div>
 					)
 				})}
@@ -77,7 +78,7 @@ class VolunteerFeed extends Component {
 		
 		return (
 			<div className="vol-feed-parent-container">
-				{this.renderOrgsList()}
+				{ this.renderOrgsList() }
 				<div className="vol-feed-map-and-ping-container">
 					<MapContainer google={this.props.google} allOrgs={allOrgs} selectedOrg={selectedOrg} />
 					{ selectedOrg ? <SendPing /> : "" }

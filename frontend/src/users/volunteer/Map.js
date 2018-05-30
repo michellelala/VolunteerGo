@@ -4,18 +4,50 @@ import ReactDOM from "react-dom";
 
 export default class Map extends Component {
 	componentDidMount() {
+		const { google } = this.props
+		let pos, infoWindow;
 		this.loadMap()
-		// console.log("props in Map CDM: ", this.props)
+
+		// User has to accept location tracking
+		if (navigator.geolocation) {
+			// Find the user's current location
+			navigator.geolocation.getCurrentPosition((position) => {
+				infoWindow = new google.maps.InfoWindow();
+				// Set pos variable to user's current position
+				pos = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				}
+				// Create new marker, with position set to user's current position
+				const marker = new google.maps.Marker({
+					position: pos,
+					map: this.map,
+					title: "Current position."
+				})
+				// Set the info window to current posiiton
+				infoWindow.setPosition(pos)
+				infoWindow.setContent("You are here.")
+				infoWindow.open(this.map)
+				this.map.setCenter(pos)
+			}, function() {
+					this.handleLocationError(true, infoWindow, this.map.getCenter());
+					}
+				);
+		} else if (!navigator.geolocation) {
+			// Browser doesn't support Geolocation, user can't be located
+			let infoWindow = new google.maps.InfoWindow;
+			this.handleLocationError(false, infoWindow, this.map.getCenter());
+		}
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.google !== this.props.google) {
 			this.loadMap();
+			console.log("in first if statement")
 		}
-		this.loadMap();
-		// console.log("props in Map CDU: ", this.props)
 
-		if (prevProps.selectedOrg !== this.props.google) {
+		if (this.props.selectedOrg) {
+			console.log("selected an org")
 			this.loadMap()
 		}
 	}
@@ -23,64 +55,33 @@ export default class Map extends Component {
 	loadMap() {
 		if (this.props && this.props.google) {
 			const { google, allOrgs, selectedOrg } = this.props;
-			console.log("selected org: ", selectedOrg)
 
-			// User has to approve location tracking
-			if (navigator.geolocation) {
-				let pos, infoWindow;
-				const maps = google.maps;
-				const mapRef = this.refs.map;
-				const node = ReactDOM.findDOMNode(mapRef);
-				
-				let zoom = 14;
-				let lat = 40.730610; // default lat for NYC
-				let lng = -73.935242; // default long for NYC
-				const center = new maps.LatLng(lat, lng)
-				const mapConfig = Object.assign({}, {
-					center: center,
-					zoom: zoom
-				})
-				this.map = new maps.Map(node, mapConfig)
-				
-				// Find the user's current location
-				navigator.geolocation.getCurrentPosition((position) => {
-					infoWindow = new google.maps.InfoWindow();
-					// Set pos variable to user's current position
-					pos = {
-						lat: position.coords.latitude,
-						lng: position.coords.longitude
-					}
-					// Create new marker, with position set to user's current position
-					const marker = new google.maps.Marker({
-						position: pos,
-						map: this.map,
-						title: "Current position."
-					})
-					// Set the info window to current posiiton
-					infoWindow.setPosition(pos)
-					infoWindow.setContent("You are here.")
-					infoWindow.open(this.map)
-					this.map.setCenter(pos)
-				}, function() {
-						this.handleLocationError(true, infoWindow, this.map.getCenter());
-						}
-					);
+			let pos, infoWindow;
+			const maps = google.maps;
+			const mapRef = this.refs.map;
+			const node = ReactDOM.findDOMNode(mapRef);
+			
+			let zoom = 14;
+			let lat = 40.730610; // default lat for NYC
+			let lng = -73.935242; // default long for NYC
+			const center = new maps.LatLng(lat, lng)
+			const mapConfig = Object.assign({}, {
+				center: center,
+				zoom: zoom
+			})
+			this.map = new maps.Map(node, mapConfig)
 
-					const geocoder = new google.maps.Geocoder();
+			const geocoder = new google.maps.Geocoder();
 					// Map through all orgs and create a marker
 					allOrgs.map(org => {
 						this.geocodeAddress(geocoder, this.map, org.address, org.name)
 					})
-			} else {
-				// Browser doesn't support Geolocation, user can't be located
-				let infoWindow = new google.maps.InfoWindow;
-				this.handleLocationError(false, infoWindow, this.map.getCenter());
-			}
 
 			if (selectedOrg) {
 				const { selectedOrg } = this.props;
 				const geocoder = new google.maps.Geocoder();
 				const infoWindow = new google.maps.InfoWindow();
+				this.handleOrgClick(geocoder, this.map, selectedOrg, infoWindow)
 				
 			}
 		}
@@ -93,8 +94,9 @@ export default class Map extends Component {
 
 		geocoder.geocode({ "address": clickedOrg.address }, function(results, status) {
 			if (status === "OK") {
-				let pos = results[0].geometry.location
-				resultsMap.setCenter(pos)
+				resultsMap.setCenter(results[0].geometry.location)
+			} else {
+				alert('Geocode was not successful for the following reason: ' + status)
 			}
 		})
 	}
@@ -109,7 +111,7 @@ export default class Map extends Component {
 					map: resultsMap,
 					position: results[0].geometry.location
 				})
-				console.log("results: ", results[0].geometry.location)
+				// console.log("results: ", results[0].geometry.location)
 				// TODO: Get infoWindows working with org markers
 				// let infoWindow = new google.maps.InfoWindow()
 				// infoWindow.setContent(name)

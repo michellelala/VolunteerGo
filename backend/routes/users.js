@@ -24,7 +24,6 @@ router.post("/register/organization", db.registerOrganization,
     res.json({
       id: req.user.id,
       username: req.user.username,
-      // message: `${req.user.username} is logged in!`
       name: req.user.name,
       org: req.user.org
     })

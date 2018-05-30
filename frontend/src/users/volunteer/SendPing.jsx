@@ -1,26 +1,28 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import "../../CSS/volFeed.css";
+import "../../CSS/sendPing.css";
 
 export default class SendPing extends Component {
-  state = {
-    orgId: "",
-    timeSent: "",
-    startTime: "",
-    duration: "",
-    message: ""
+  constructor() {
+    super()
+
+    this.state = {
+      timeSent: "",
+      startTime: "",
+      duration: "",
+      message: ""
+    }
   }
 
   handleSendPing = (e) => {
     e.preventDefault()
-    const { orgId, timeSent, startTime, duration } = this.state;
-    let currentTime = new Date().toString()
+    const { startTime, duration } = this.state;
+    const { selectedOrg } = this.props;
     
     axios
       .post("/users/sendPing", {
-        orgId: orgId,
-        timeSent: currentTime,
+        orgId: selectedOrg.id,
         startTime: startTime,
         duration: duration
       })
@@ -37,14 +39,18 @@ export default class SendPing extends Component {
     })
   }
 
-
   render() {
     const startTimes = ["7 AM", "8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM"]
     const durationArr = ["0-1 hour", "1-2 hours", "3-4 hours", "4+ hours", "As long as needed"]
-    // console.log("sendping state: ", this.state)
+    const { selectedOrg } = this.props;
+    
+    console.log("SendPing state: ", this.state)
+
     return (
       <div className="send-ping-parent-container">
-        <form onSubmit={this.handleSendPing}>
+        <h3>You've selected: {selectedOrg.name}</h3>
+
+        <form onSubmit={this.handleSendPing} className="send-ping-form">
           <p>What time are you available to start?</p>
           <select name="startTime" onChange={this.handleInputChange}>
             {["", ...startTimes].map(hr => {

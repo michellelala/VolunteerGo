@@ -53,7 +53,7 @@ router.get("/getPingsSentByVolunteer", loginRequired, db.getPingsSentByVolunteer
 router.get("/getPingsSentToOrg", loginRequired, db.getPingsSentToOrg)
 
 // --------------- POST -------------- //
-router.post("/addPing", loginRequired, db.sendPing)
+router.post("/sendPing", loginRequired, db.sendPing)
 
 // -------------- DELETE ------------- //
 

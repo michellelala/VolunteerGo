@@ -200,11 +200,11 @@ const getPingsSentToOrg = (req, res, next) => {
 const sendPing = (req, res, next) => {
 	db
 		.none(
-			"INSERT INTO pings VALUES (DEFAULT, ${volunteerUsername}, ${orgId}, ${timeSent}, ${startTime}, ${duration})",
+			"INSERT INTO pings (volunteer_username, org_id, time_sent, start_time, duration, accepted) VALUES (${volunteerUsername}, ${orgId}, ${timeSent}, ${startTime}, ${duration}, false)",
 			{
-				volunterUsername: req.user.username, // only volunteers can ping
+				volunteerUsername: req.user.username, // only volunteers can ping
 				orgId: req.body.orgId,
-				timeSent: req.body.timeSent,
+				timeSent: new Date().toString(),
 				startTime: req.body.startTime,
 				duration: req.body.duration
 			}
@@ -213,6 +213,7 @@ const sendPing = (req, res, next) => {
 			res.status(200).send(`Successfully pinged ${req.body.orgId}!`)
 		})
 		.catch(err => {
+			console.log(err)
 			res.status(500).send("Unable to send ping!")
 		})
 }

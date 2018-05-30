@@ -4,50 +4,16 @@ import ReactDOM from "react-dom";
 
 export default class Map extends Component {
 	componentDidMount() {
-		const { google } = this.props
-		let pos, infoWindow;
-		this.loadMap()
-
-		// User has to accept location tracking
-		if (navigator.geolocation) {
-			// Find the user's current location
-			navigator.geolocation.getCurrentPosition((position) => {
-				infoWindow = new google.maps.InfoWindow();
-				// Set pos variable to user's current position
-				pos = {
-					lat: position.coords.latitude,
-					lng: position.coords.longitude
-				}
-				// Create new marker, with position set to user's current position
-				const marker = new google.maps.Marker({
-					position: pos,
-					map: this.map,
-					title: "Current position."
-				})
-				// Set the info window to current posiiton
-				infoWindow.setPosition(pos)
-				infoWindow.setContent("You are here.")
-				infoWindow.open(this.map)
-				this.map.setCenter(pos)
-			}, function() {
-					this.handleLocationError(true, infoWindow, this.map.getCenter());
-					}
-				);
-		} else if (!navigator.geolocation) {
-			// Browser doesn't support Geolocation, user can't be located
-			let infoWindow = new google.maps.InfoWindow;
-			this.handleLocationError(false, infoWindow, this.map.getCenter());
-		}
+		this.loadMap();
+		this.locateUser();
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.google !== this.props.google) {
 			this.loadMap();
-			console.log("in first if statement")
 		}
 
 		if (this.props.selectedOrg) {
-			console.log("selected an org")
 			this.loadMap()
 		}
 	}
@@ -99,6 +65,41 @@ export default class Map extends Component {
 				alert('Geocode was not successful for the following reason: ' + status)
 			}
 		})
+	}
+
+	locateUser = () => {
+		const { google } = this.props
+		let pos, infoWindow;
+		// User has to accept location tracking
+		if (navigator.geolocation) {
+			// Find the user's current location
+			navigator.geolocation.getCurrentPosition((position) => {
+				infoWindow = new google.maps.InfoWindow();
+				// Set pos variable to user's current position
+				pos = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				}
+				// Create new marker, with position set to user's current position
+				const marker = new google.maps.Marker({
+					position: pos,
+					map: this.map,
+					title: "Current position."
+				})
+				// Set the info window to current posiiton
+				infoWindow.setPosition(pos)
+				infoWindow.setContent("You are here.")
+				infoWindow.open(this.map)
+				this.map.setCenter(pos)
+			}, function() {
+					this.handleLocationError(true, infoWindow, this.map.getCenter());
+					}
+				);
+		} else if (!navigator.geolocation) {
+			// Browser doesn't support Geolocation, user can't be located
+			let infoWindow = new google.maps.InfoWindow;
+			this.handleLocationError(false, infoWindow, this.map.getCenter());
+		}
 	}
 
 	geocodeAddress = (geocoder, resultsMap, address, name) => {

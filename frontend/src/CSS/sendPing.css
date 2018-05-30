@@ -1,0 +1,28 @@
+.send-ping-parent-container {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.send-ping-submit {
+  padding: 10px;
+  border-radius: 14px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 0.8em;
+}
+
+select {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 0.8em;
+  background-color: white;
+  border: 1px solid rgb(247,252,47);
+  color: #DC127E;
+  width: 70%;
+  height: 2em;
+  text-align: center;
+  margin-bottom: 5px;
+}

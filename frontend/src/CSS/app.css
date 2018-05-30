@@ -77,7 +77,7 @@ input[type="submit"] {
   width: 40%;
   height: 100%;
   color: whitesmoke;
-  font-size: 18px;
+  font-size: 1em;
   padding: 10px 20px;
   margin: 10px;
   border: none;
@@ -93,4 +93,11 @@ input[type="submit"]:hover {
     color: #DC127E;
     background-color: whitesmoke;
     transition: 0.5s;
+}
+
+
+@media all and (max-width: 650px) {
+  button, input[type="submit"] {
+    font-size: 0.8em;
+  }
 }

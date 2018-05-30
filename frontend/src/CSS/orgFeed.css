@@ -9,31 +9,59 @@
 */
 
 .org-feed-ping-container {
-  width: 80%;
+  width: 95%;
   padding: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  overflow: flex-wrap;
+  justify-content: center;
   margin: 0 auto;
 }
 
-.org-feed-ping-div {
+.each-ping {
   background-color: #e5eff8;
-  padding: 20px;
+  padding: 15px;
+  width: 28%;
+  /* height: 300px; */
+  overflow: scroll;
+  margin: 10px;
 }
 
 .org-feed-accepted-pings,
 .org-feed-pending-pings {
-  width: 80%;
+  width: 95%;
   padding: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
   margin: 0 auto;
 }
-.org-feed-accepted-pings {
-  
-}
-.org-feed-pending-pings {
 
+/* button */
+.accept-ping {
+  width: 65%;
+  height: 20%;
+  font-size: 0.8em;
+}
+
+/* ---------- Media Queries ---------- */
+
+@media all and (max-width: 450px) {
+  .org-feed-ping-container {
+    width: 100%;
+    
+  }
+
+  .org-feed-accepted-pings,
+  .org-feed-pending-pings {
+    flex-direction: column;
+    width: 95%;
+    padding: 0;
+  }
+
+  .each-ping {
+    width: 90%;
+    padding: 10px;
+  }
 }

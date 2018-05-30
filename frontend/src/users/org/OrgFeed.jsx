@@ -46,7 +46,7 @@ export default class OrgFeed extends Component {
               pings.map(ping => {
                 if (ping.accepted) {
                   return (
-                  <div name={ping.id} className="org-feed-ping-div">
+                  <div name={ping.id} className="each-ping">
                     {ping.name}<br />
                     @{ping.username}<br />
                     Sent at: {ping.time_sent}<br />
@@ -65,12 +65,13 @@ export default class OrgFeed extends Component {
                 pings.map(ping => {
                   if (!ping.accepted) {
                     return (
-                      <div name={ping.id} className="org-feed-ping-div" key={ping.name}>
+                      <div name={ping.id} className="each-ping" key={ping.name}>
                         {ping.name}<br />
                         @{ping.username}<br />
                         Sent at: {ping.time_sent}<br />
                         Start time: {ping.start_time}<br />
                         Available for: {ping.duration}<br />
+                        <button className="accept-ping">Accept</button>
                       </div>
                     )
                   }

@@ -1,12 +1,26 @@
 import React, { Component } from "react";
 import { GoogleApiWrapper } from "google-maps-react";
+import Modal from "react-modal";
 import axios from "axios";
 import googleKey from "../../google-key.js"
 import "../../CSS/volFeed.css";
-// import Geolocation from "react-geolocation";
 
 import MapContainer from "./MapContainer";
 import SendPing from "./SendPing";
+
+Modal.setAppElement('#root')
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 
 class VolunteerFeed extends Component {
 	constructor(props) {
@@ -14,8 +28,13 @@ class VolunteerFeed extends Component {
 		this.state = {
 			allOrgs: [],
 			selectedOrg: "",
-			message: ""
+			message: "",
+			modalIsOpen: false
 		}
+
+		this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
 	}
 
 	componentDidMount() {
@@ -46,12 +65,21 @@ class VolunteerFeed extends Component {
 		} 
 	}
 
-	renderSendPing = () => {
-		return <SendPing />
-	}
+	// ---------- Modal functions ---------- //
+	openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // this.subtitle.style.color = '#f00';
+  }
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
+
 	
 	renderOrgsList = () => {
-		const { allOrgs } = this.state;
+		const { allOrgs, selectedOrg } = this.state;
 
 		return (
 			<div className="vol-feed-orgs-div">
@@ -62,6 +90,11 @@ class VolunteerFeed extends Component {
 							{org.telephone}<br/>
 							{org.website}<br/>
 							{org.address}
+							{
+								selectedOrg.id === org.id
+								? <button onClick={this.openModal}>Send Ping</button>
+								: ""
+							}
 						</div>
 					)
 				})}
@@ -74,16 +107,34 @@ class VolunteerFeed extends Component {
 		const { user } = this.props;
 		const { allOrgs, selectedOrg, message } = this.state;
 
-		console.log("state in volfeed: ", this.state)
+		// console.log("state in volfeed: ", this.state)
 		
 		return (
 			<div className="vol-feed-parent-container">
+				
 				{ this.renderOrgsList() }
+				
 				<div className="vol-feed-map-and-ping-container">
-					<MapContainer google={this.props.google} allOrgs={allOrgs} selectedOrg={selectedOrg} />
-					{ selectedOrg ? <SendPing /> : "" }
+					<MapContainer 
+						google={this.props.google} 
+						allOrgs={allOrgs} 
+						selectedOrg={selectedOrg}/>
 				</div>
-					{message}
+
+				{message}
+
+				<div>
+					<Modal
+						isOpen={this.state.modalIsOpen}
+						onAfterOpen={this.afterOpenModal}
+						onRequestClose={this.closeModal}
+						style={customStyles}
+						contentLabel="Send Ping Modal"
+					>
+						<SendPing selectedOrg={selectedOrg} />
+						<button onClick={this.closeModal}>close</button>
+					</Modal>
+      	</div>
 			</div>
 		)
 	}

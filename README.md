@@ -6,15 +6,22 @@ VolunteerGo is here to lend a helping hand.
 
 ---
 
-This app is still a work-in-progress, but here is a list of features that will be implemented:
+This app is still a work-in-progress, but here is a list of features that will be implemented for MVP:
 
 Organizations can:
 - Sign up to be part of the network of non-profit organizations
 - Start receiving pings (volunteers send this to alert you of their availability) right away
 - Accept or decline pings based on your organizational needs
-- Turn pings on or off
 
 Volunteers can:
 - Sign up to be part of the network of volunteers
 - Send pings to organizations
 - See what organizations are near their current location
+
+Future Features: 
+- Volunteers will receive notifications when their ping is accepted/declined
+- Organizations will receive notifications for when they receive a new ping
+- Email confirmation to reduce fake account creation
+- User profiles for both organizations and volunteers
+- AWS to host user images (for profile or 
+- Ping history page for both user groups

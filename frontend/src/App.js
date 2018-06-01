@@ -8,7 +8,7 @@ import Login from "./users/Login";
 import Register from "./users/Register";
 import Logout from "./users/Logout";
 import VolunteerFeed from "./users/volunteer/VolunteerFeed";
-import PingHistory from "./users/volunteer/PingHistory";
+import VolunteerPingHistory from "./users/volunteer/VolunteerPingHistory";
 import OrgFeed from "./users/org/OrgFeed";
 
 class App extends Component {
@@ -76,7 +76,7 @@ class App extends Component {
     }
     
     if (user.org === false) { // Volunteer logged in
-      return <PingHistory user={user} />
+      return <VolunteerPingHistory user={user} />
     } else if (user.org === true) {
       return <h3 className="error-message">You must be a volunteer to view this page.</h3>
     }

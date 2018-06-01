@@ -12,16 +12,17 @@ Organizations can:
 - Sign up to be part of the network of non-profit organizations
 - Start receiving pings (volunteers send this to alert you of their availability) right away
 - Accept or decline pings based on your organizational needs
+- See their ping request history
 
 Volunteers can:
 - Sign up to be part of the network of volunteers
 - Send pings to organizations
 - See what organizations are near their current location
+- See their ping history
 
 Future Features: 
-- Volunteers will receive notifications when their ping is accepted/declined
+- Volunteers will receive notifications when their ping is accepted/declined/expired
 - Organizations will receive notifications for when they receive a new ping
 - Email confirmation to reduce fake account creation
-- User profiles for both organizations and volunteers
-- AWS to host user images (for profile or 
-- Ping history page for both user groups
+- User profiles for both user groups
+- AWS to host user images (for profile pictures)

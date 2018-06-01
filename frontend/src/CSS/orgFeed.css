@@ -1,10 +1,10 @@
 /* 
------ Color Scheme -----
-- Hot Pink: DC127E or 220,18,126
-- Yellow: EDEF2C or 237,239,44
-- Turquoise: 22ABDF or 34,171,223
-- Light Blue: E5EFF8 or 229,239,248
-- Sand: F8E8C6 or 248,232,198
+----- Color Scheme - MIX -----
+- hot pink: d41c8e
+- mint green: bdeacd
+- dull purple: 4b5185
+- lime green: dcff25
+- violet: 240073
 --------- End ---------
 */
 
@@ -19,30 +19,28 @@
 }
 
 .each-ping {
-  background-color: #e5eff8;
   padding: 15px;
   width: 28%;
-  /* height: 300px; */
   overflow: scroll;
   margin: 10px;
 }
 
 .org-feed-accepted-pings,
 .org-feed-pending-pings {
-  width: 95%;
+  width: 80%;
   padding: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
   margin: 0 auto;
+  border-top: 1px solid #bdeacd;
 }
 
 /* button */
-.accept-ping {
-  width: 65%;
-  height: 20%;
-  font-size: 0.8em;
+.accept-decline-ping {
+  width: 35%;
+  height: 30%;
 }
 
 /* ---------- Media Queries ---------- */

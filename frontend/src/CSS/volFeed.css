@@ -54,7 +54,7 @@
 @media all and (max-width: 450px) {
   .vol-feed-parent-container {
     display: flex;
-    flex-direction: column-reverse;
+    /* flex-direction: column-reverse; */
     /* height: 650px; */
     width: 100%;
   }

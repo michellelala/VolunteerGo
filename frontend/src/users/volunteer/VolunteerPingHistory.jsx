@@ -9,21 +9,19 @@ export default class PingHistory extends Component {
 
   componentDidMount() {
     const { user } = this.props;
-    
-    if (!user.org) { // Volunteer
-      axios
-        .get("/users/getPingsSentByVolunteer")
-        .then(res => {
-          this.setState({
-            history: res.data
-          })
+
+    axios
+      .get("/users/getPingsSentByVolunteer")
+      .then(res => {
+        this.setState({
+          history: res.data
         })
-        .catch(err => {
-          this.setState({
-            message: "Error retrieving your ping history."
-          })
+      })
+      .catch(err => {
+        this.setState({
+          message: "Error retrieving your ping history."
         })
-    }
+      })
   }
 
 

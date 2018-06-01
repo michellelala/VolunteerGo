@@ -20,15 +20,6 @@ CREATE TABLE users (
     flagged BOOLEAN DEFAULT FALSE
 );
 
--- CREATE TABLE organizations (
---     id SERIAL PRIMARY KEY,
---     org_id INT REFERENCES users(id),
---     telephone VARCHAR,
---     address VARCHAR,
---     website VARCHAR,
---     flagged BOOLEAN DEFAULT FALSE
--- );
-
 
 CREATE TABLE pings (
     id SERIAL PRIMARY KEY,
@@ -37,7 +28,7 @@ CREATE TABLE pings (
     time_sent VARCHAR,
     start_time VARCHAR,
     duration VARCHAR,
-	accepted BOOLEAN DEFAULT FALSE
+	accepted BOOLEAN DEFAULT NULL
 );
 
 
@@ -58,9 +49,9 @@ INSERT INTO users
 
 
 INSERT INTO pings
-		VALUES (DEFAULT, 'michelle', 6, 'Tues May 01 2018 11:09:01 GMT-0400 (EDT)', '5:00PM', '2 hours', false),
+		VALUES (DEFAULT, 'michelle', 6, 'Tue May 01 2018 11:09:01 GMT-0400 (EDT)', '5:00PM', '2 hours', NULL),
 		             (DEFAULT, 'helen', 6, 'Mon May 07 2018 11:03:54 GMT-0400 (EDT)', '4:00PM', '1 hour', true),
 					 (DEFAULT, 'david', 9, 'Thu May 10 2018 09:14:32 GMT-0400 (EDT)', '6:00PM', '1 hour', false),
-					 (DEFAULT, 'princess', 7, 'Mon May 28 2018 16:32:03 GMT-0400 (EDT)', '5:30PM', '30 minutes', false),
+					 (DEFAULT, 'princess', 7, 'Mon May 28 2018 16:32:03 GMT-0400 (EDT)', '5:30PM', '30 minutes', NULL),
 					 (DEFAULT, 'chicken', 8, 'Fri May 25 2018 12:05:54 GMT-0400 (EDT)', '3:00PM', '1 hour 30 minutes', true),
 					 (DEFAULT, 'michelle', 10, 'Fri Jun 01 2018 11:05:54 GMT-0400 (EDT)', '2:30PM', '4 hours', true);

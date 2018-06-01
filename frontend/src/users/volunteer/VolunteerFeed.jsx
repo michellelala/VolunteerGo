@@ -89,7 +89,7 @@ class VolunteerFeed extends Component {
 							<span className="org-name">{org.name}</span><br />
 							{org.telephone}<br/>
 							{org.website}<br/>
-							{org.address}
+							{org.address}<br />
 							{
 								selectedOrg.id === org.id
 								? <button onClick={this.openModal}>Send Ping</button>
@@ -111,15 +111,14 @@ class VolunteerFeed extends Component {
 		
 		return (
 			<div className="vol-feed-parent-container">
-				
-				{ this.renderOrgsList() }
-				
-				<div className="vol-feed-map-and-ping-container">
+				<div className="map-container">
 					<MapContainer 
 						google={this.props.google} 
 						allOrgs={allOrgs} 
 						selectedOrg={selectedOrg}/>
 				</div>
+
+				{ this.renderOrgsList() }
 
 				{message}
 

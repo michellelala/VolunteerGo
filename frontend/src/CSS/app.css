@@ -1,18 +1,17 @@
 /* 
------ Color Scheme -----
-- Hot Pink: DC127E or 220,18,126
-- Yellow: fcff2f or rgb(252, 255, 47)
-- Turquoise: 22ABDF or 34,171,223
-- Light Blue: E5EFF8 or 229,239,248
-- Sand: F8E8C6 or 248,232,198
+----- Color Scheme - MIX -----
+- hot pink: d41c8e
+- mint green: bdeacd
+- dull purple: 4b5185
+- lime green: dcff25
+- violet: 240073
 --------- End ---------
 */
-
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
 html {
   background-color: #f8f8f8;
-  color: #111;
+  color: #240073;
   text-align: center;
   justify-content: center;
   font-family: "Noto Sans", sans-serif;
@@ -25,13 +24,13 @@ body {
 }
 
 h1, h2, h3, h4 {
-  color: #DC127E;
+  color: #d41c8e;
 }
 
 /* ----- Nav Bar guidelines ----- */
 nav {
   /* padding: 40px 20px; */
-  background-color: #22ABDF;
+  background-color: #240073;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -41,11 +40,10 @@ nav {
 .nav-link-container {
   height: 100%;
   padding: 40px 20px;
-  border-bottom: 4px solid #22ABDF;
+  border-bottom: 4px solid #240073;
 }
 .nav-link-container:hover {
-  border-bottom: 4px solid #DC127E;
-  color: rgb(252, 255, 47);
+  border-bottom: 4px solid #dcff25;
   transition: 0.5s;
 }
 nav a {
@@ -56,27 +54,28 @@ nav a {
   margin: 1em;
 }
 nav a:hover { 
-  color: rgb(252, 255, 47);
-  /* border-bottom: 2px solid #DC127E; */
+  color: #bdeacd;
   transition: 0.2s;
 }
 
 /* ----- Link guidelines ----- */
 a {
-  color: #DC127E;
+  color: #d41c8e;
 }
 a:hover {
-  color: rgb(252, 255, 47)
+  color: #dcff25;
 }
 
 /* ----- Submit/Button guidelines ----- */
 button,
 input[type="submit"] {
   font-family: "Noto Sans", sans-serif;
-  background-color: #22ABDF;
+  background-color: #4b5185;
+  /* background-color: #bdeacd; */
+  /* color: #111; */
+  color: #dcff25;
   width: 40%;
   height: 100%;
-  color: whitesmoke;
   font-size: 1em;
   padding: 10px 20px;
   margin: 10px;
@@ -90,14 +89,38 @@ input[type="submit"] {
 
 button:hover,
 input[type="submit"]:hover {
-    color: #DC127E;
-    background-color: whitesmoke;
+    /* color: #dcff25;
+    background-color: #4b5185; */
+    background-color: #bdeacd;
+    color: #111;
     transition: 0.5s;
 }
 
+/* ---------- Media Queries ---------- */
 
 @media all and (max-width: 650px) {
   button, input[type="submit"] {
     font-size: 0.8em;
+  }
+}
+
+@media all and (max-width: 450px) {
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  nav a {
+    font-size: 0.8em;
+  }
+  nav a:hover {
+    border-bottom: 4px solid #dcff25;
+  }
+  .nav-link-container:hover {
+    border: none;
+    transition: 0.5s;
   }
 }

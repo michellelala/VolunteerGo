@@ -67,6 +67,8 @@ export default class SendPing extends Component {
           
           <input type="submit" value="Send" className="send-ping-submit" />
         </form>
+
+        {this.state.message}
         
       </div>
     )

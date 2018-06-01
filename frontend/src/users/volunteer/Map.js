@@ -132,7 +132,7 @@ export default class Map extends Component {
 	}
 
 	render() {
-		const style = { width: "50vw", height: "50vh" }
+		const style = { width: "100vw", height: "50vh" }
 
 		return (
 			<div ref="map" style={style}>

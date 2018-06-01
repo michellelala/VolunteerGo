@@ -58,9 +58,9 @@ INSERT INTO users
 
 
 INSERT INTO pings
-		VALUES (DEFAULT, 'michelle', 6, 'Monday 9:30AM', '5:00PM', '2 hours', false),
-		             (DEFAULT, 'helen', 6, 'Tuesday 12:00PM', '4:00PM', '1 hour', true),
-					 (DEFAULT, 'david', 9, 'Monday 3:14PM', '6:00PM', '1 hour', false),
-					 (DEFAULT, 'princess', 7, 'Thursday 10:15AM', '5:30PM', '30 minutes', false),
-					 (DEFAULT, 'chicken', 8, 'Monday 8:00AM', '3:00PM', '1 hour 30 minutes', true),
-					 (DEFAULT, 'michelle', 10, 'Wednesday 11:09AM', '2:30PM', '4 hours', true);
+		VALUES (DEFAULT, 'michelle', 6, 'Tues May 01 2018 11:09:01 GMT-0400 (EDT)', '5:00PM', '2 hours', false),
+		             (DEFAULT, 'helen', 6, 'Mon May 07 2018 11:03:54 GMT-0400 (EDT)', '4:00PM', '1 hour', true),
+					 (DEFAULT, 'david', 9, 'Thu May 10 2018 09:14:32 GMT-0400 (EDT)', '6:00PM', '1 hour', false),
+					 (DEFAULT, 'princess', 7, 'Mon May 28 2018 16:32:03 GMT-0400 (EDT)', '5:30PM', '30 minutes', false),
+					 (DEFAULT, 'chicken', 8, 'Fri May 25 2018 12:05:54 GMT-0400 (EDT)', '3:00PM', '1 hour 30 minutes', true),
+					 (DEFAULT, 'michelle', 10, 'Fri Jun 01 2018 11:05:54 GMT-0400 (EDT)', '2:30PM', '4 hours', true);

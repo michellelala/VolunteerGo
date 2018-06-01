@@ -60,11 +60,7 @@ class App extends Component {
     const { user } = this.state;
     // Check for an active user
     if (!user) { 
-      return (
-        <div>
-          <h2>You must login first!</h2>
-        </div>
-      )
+      return <h2>You must login first!</h2>
     }
 
     if (user.org === true) { // Org logged in
@@ -73,16 +69,18 @@ class App extends Component {
       return <VolunteerFeed user={this.state.user} />
     }
   }
-  // renderPingHistory = () => {
-  //   const { user } = this.state;
-  //   if (user !== null) {
-  //     if (user.org === false) { // Volunteer logged in
-  //       return <PingHistory user={user} />
-  //     } else if (user.org === true) {
-  //       return <h3 className="error-message">You must be a volunteer to view this page.</h3>
-  //     }
-  //   } 
-  // }
+  renderPingHistory = () => {
+    const { user } = this.state;
+    if (!user) { 
+      return <h2>You must login first!</h2>
+    }
+    
+    if (user.org === false) { // Volunteer logged in
+      return <PingHistory user={user} />
+    } else if (user.org === true) {
+      return <h3 className="error-message">You must be a volunteer to view this page.</h3>
+    }
+  }
 
   render() {
     const { user, activeUser } = this.state;
@@ -93,7 +91,7 @@ class App extends Component {
           { activeUser ? "" : <div className="nav-link-container"><Link to="/login">Login</Link></div> }
           { activeUser ? "" : <div className="nav-link-container"><Link to="/register">Register</Link></div> }
           { activeUser ? <div className="nav-link-container"><Link to="/home">Home</Link></div> : "" }
-          {/* { activeUser ? <div className="nav-link-container"><Link to="/history">Ping History</Link></div> : "" } */}
+          { activeUser ? <div className="nav-link-container"><Link to="/history">Ping History</Link></div> : "" }
           { user ? <div className="nav-link-container"><Link to="/logout">Logout</Link></div> : "" }
         </nav>
 

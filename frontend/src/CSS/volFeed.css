@@ -1,10 +1,10 @@
 /* 
------ Color Scheme -----
-- Hot Pink: DC127E or 220,18,126
-- Yellow: EDEF2C or 237,239,44
-- Turquoise: 22ABDF or 34,171,223
-- Light Blue: E5EFF8 or 229,239,248
-- Sand: F8E8C6 or 248,232,198
+----- Color Scheme - MIX -----
+- hot pink: d41c8e
+- mint green: bdeacd
+- dull purple: 4b5185
+- lime green: dcff25
+- violet: 240073
 --------- End ---------
 */
 
@@ -12,27 +12,20 @@
 
 .vol-feed-parent-container {
   display: flex;
-  flex-direction: row;
-  /* border: 4px solid red; */
+  flex-direction: column;
   height: 650px;
 }
-.vol-feed-map-and-ping-container {
+.map-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /* padding: 20px;
-  margin: 20px; */
-  /* height: 50%; */
-  /* border: 5px solid black; */
+  justify-content: flex-start;
 }
 
 .vol-feed-orgs-div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* justify-content: center; */
-  /* border: 5px solid blue; */
-  width: 50%;
+  width: 100%;
   padding: 0;
   overflow: scroll;
 }
@@ -40,10 +33,10 @@
   text-align: left;
   font-size: 0.9em;
   width: 100%;
-  /* padding: 0 20px 10px 20px; */
-  /* width: 90%; */
   margin: 0;
   border: 4px solid transparent;
+  display: flex;
+  flex-direction: row;
 }
 .single-org:hover {
   background-color: white;
@@ -55,32 +48,16 @@
   font-weight: bold;
   font-size: 1.2em;
 }
-/* 
-.send-ping-parent-container {
-  padding: 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  width: 80%;
-}
 
-.send-ping-submit {
-  padding: 10px;
-  border-radius: 14px;
-  font-family: "Noto Sans", sans-serif;
-  font-size: 0.8em;
-}
 
-select {
-  font-family: "Noto Sans", sans-serif;
-  font-size: 1em;
-  background-color: white;
-  border: 1px solid rgb(247,252,47);
-  color: #DC127E;
-  width: 70%;
-  height: 2em;
-  text-align: center;
-  margin-bottom: 5px;
-} */
+/* ---------- Media Queries ---------- */
+@media all and (max-width: 450px) {
+  .vol-feed-parent-container {
+    display: flex;
+    flex-direction: column-reverse;
+    /* height: 650px; */
+    width: 100%;
+  }
+
+
+}

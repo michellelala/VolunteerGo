@@ -160,9 +160,9 @@ const getAllVolunteers = (req, res, next) => {
 const getPingsSentByVolunteer = (req, res, next) => {
 	db
 		.any(
-			"SELECT org_id, users.username, start_time, duration, accepted FROM pings JOIN users ON pings.org_id=users.id WHERE volunteer_id=${id}",
+			"SELECT org_id, users.name, time_sent, start_time, duration, accepted FROM pings JOIN users ON pings.org_id=users.id WHERE volunteer_username=${username}",
 			{
-				id: req.user.id
+				username: req.user.username
 			}
 		)
 		.then(data => {

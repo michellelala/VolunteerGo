@@ -8,6 +8,11 @@
 --------- End ---------
 */
 
+.org-feed-parent {
+  width: 90%;
+  margin: 0 auto;
+}
+
 .org-feed-ping-container {
   width: 95%;
   padding: 20px;
@@ -34,13 +39,45 @@
   justify-content: center;
   flex-wrap: wrap;
   margin: 0 auto;
-  border-top: 1px solid #bdeacd;
 }
 
 /* button */
 .accept-decline-ping {
   width: 35%;
   height: 30%;
+}
+
+/* ---------- Tabs ---------- */
+.tabs {
+  width: 100%;
+  margin: 40px auto;
+  padding: 0;
+}
+.tab-list {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 0;
+  color: #bdeacd;
+  border-bottom: 1px solid #dcff25;
+}
+.single-tab {
+  width: 50%;
+  list-style-type: none;
+  padding: 20px 0;
+  border-radius: 20px 20px 0 0;
+  color: #f8f8f8;
+  background-color: #4b5185;
+}
+.single-tab:hover {
+  color: #dcff25;
+  transition: 0.5s;
+  cursor: pointer;
+  background-color: #4b5185b4;
+}
+.react-tabs__tab--selected {
+  color: #bdeacd;
+  background-color: #240073;
 }
 
 /* ---------- Media Queries ---------- */

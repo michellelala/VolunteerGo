@@ -75,7 +75,8 @@ class VolunteerFeed extends Component {
   }
   closeModal() {
     this.setState({ modalIsOpen: false });
-  }
+	}
+	// -------- End Modal functions -------- //
 
 	
 	renderOrgsList = () => {
@@ -92,7 +93,9 @@ class VolunteerFeed extends Component {
 							{org.address}<br />
 							{
 								selectedOrg.id === org.id
-								? <button onClick={this.openModal}>Send Ping</button>
+								? <button onClick={this.openModal} className="send-ping-button">
+										Send Ping
+									</button>
 								: ""
 							}
 						</div>
@@ -131,7 +134,7 @@ class VolunteerFeed extends Component {
 						contentLabel="Send Ping Modal"
 					>
 						<SendPing selectedOrg={selectedOrg} />
-						<button onClick={this.closeModal}>close</button>
+						<button onClick={this.closeModal}>&#10005;</button>
 					</Modal>
       	</div>
 			</div>

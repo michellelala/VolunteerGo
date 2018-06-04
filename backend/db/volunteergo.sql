@@ -28,7 +28,7 @@ CREATE TABLE pings (
     time_sent VARCHAR,
     start_time VARCHAR,
     duration VARCHAR,
-	accepted BOOLEAN DEFAULT NULL
+	accepted BOOLEAN
 );
 
 

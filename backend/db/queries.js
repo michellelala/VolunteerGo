@@ -200,7 +200,7 @@ const getPingsSentToOrg = (req, res, next) => {
 const sendPing = (req, res, next) => {
 	db
 		.none(
-			"INSERT INTO pings (volunteer_username, org_id, time_sent, start_time, duration, accepted) VALUES (${volunteerUsername}, ${orgId}, ${timeSent}, ${startTime}, ${duration}, false)",
+			"INSERT INTO pings (volunteer_username, org_id, time_sent, start_time, duration, accepted) VALUES (${volunteerUsername}, ${orgId}, ${timeSent}, ${startTime}, ${duration}, NULL)",
 			{
 				volunteerUsername: req.user.username, // only volunteers can ping
 				orgId: req.body.orgId,
@@ -238,6 +238,26 @@ const acceptPing = (req, res, next) => {
 		})
 }
 
+// ----- DECLINE A PING (ORG)
+// ----- "/users/declinePing"
+const declinePing = (req, res, next) => {
+	db
+		.none(
+			"UPDATE pings SET accepted=FALSE WHERE id=${pingId}", {
+				pingId: req.body.pingId
+			}
+		)
+		.then(() => {
+			res.status(200).send(`Declined ping for request id ${req.body.pingId}.`)
+		})
+		.catch(err => {
+			res.status(500).json({
+				error: err,
+				message: "Error declining ping."
+			})
+		})
+}
+
 module.exports = {
 	registerVolunteer,
 	registerOrganization,
@@ -251,5 +271,6 @@ module.exports = {
 	getPingsSentByVolunteer,
 	getPingsSentToOrg,
 	sendPing,
-	acceptPing
+	acceptPing,
+	declinePing
 };

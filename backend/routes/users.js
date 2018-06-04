@@ -59,6 +59,7 @@ router.post("/sendPing", loginRequired, db.sendPing)
 
 // --------------- PUT --------------- //
 router.put("/acceptPing", loginRequired, db.acceptPing)
+router.put("/declinePing", loginRequired, db.declinePing)
 
 
 module.exports = router;

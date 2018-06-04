@@ -49,6 +49,10 @@
   font-size: 1.2em;
 }
 
+.send-ping-button {
+  width: fit-content;
+}
+
 
 /* ---------- Media Queries ---------- */
 @media all and (max-width: 450px) {

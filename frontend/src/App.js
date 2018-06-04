@@ -10,6 +10,7 @@ import Logout from "./users/Logout";
 import VolunteerFeed from "./users/volunteer/VolunteerFeed";
 import VolunteerPingHistory from "./users/volunteer/VolunteerPingHistory";
 import OrgFeed from "./users/org/OrgFeed";
+import OrgPingHistory from "./users/org/OrgPingHistory";
 
 class App extends Component {
   constructor() {
@@ -78,7 +79,7 @@ class App extends Component {
     if (user.org === false) { // Volunteer logged in
       return <VolunteerPingHistory user={user} />
     } else if (user.org === true) {
-      return <h3 className="error-message">You must be a volunteer to view this page.</h3>
+      return <OrgPingHistory user={user} />
     }
   }
 

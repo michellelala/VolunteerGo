@@ -1,29 +1,87 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import Modal from "react-modal";
 
 import "../../CSS/orgFeed.css";
+import AcceptedPings from "./AcceptedPings";
+import DeclinedPings from "./DeclinedPings";
+import PendingPings from "./PendingPings";
+
+Modal.setAppElement('#root')
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 export default class OrgFeed extends Component {
-  state = {
-    pings: [],
-    accepted: [],
-    pending: [],
-    selectedId: "",
-    message: ""
+  constructor() {
+    super();
+  
+    this.state = {
+      pings: [],
+      selectedId: "",
+      message: "",
+      accepted: [],
+      pending: [],
+      declined: []
+   }
+
+   this.openModal = this.openModal.bind(this);
+   this.afterOpenModal = this.afterOpenModal.bind(this);
+   this.closeModal = this.closeModal.bind(this);
   }
+
+  // ---------- Modal functions ---------- //
+	openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // this.subtitle.style.color = '#f00';
+  }
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+	}
+	// -------- End Modal functions -------- //
 
   componentDidMount() {
     this.getPings()
+  }
+  
+  componentDidUpdate() {
+    
   }
 
   getPings = () => {
     axios
       .get("/users/getPingsSentToOrg")
       .then(res => {
-        // console.log("ALL PINGS SENT: ", res.data)
+        let accepted = [];
+        let pending = [];
+        let declined = [];
+        res.data.map(ping => {
+          if (ping.accepted === true) {
+            accepted.push(ping)
+          } else if (ping.accepted === false) {
+            declined.push(ping)
+          } else {
+            pending.push(ping)
+          }
+        })
+        
         this.setState({
-          pings: res.data
+          pings: res.data,
+          accepted: accepted,
+          declined: declined,
+          pending: pending
         })
       })
       .catch(err => {
@@ -35,9 +93,29 @@ export default class OrgFeed extends Component {
 
   
   handleAcceptPing = (e) => {
-    // console.log("id: ", e.target.id)
     axios
       .put("/users/acceptPing", {
+        pingId: e.target.id
+      })
+      .then(() => {
+        this.setState({
+          selectedId: "",
+          message: "You've accepted this volunteer."
+        })
+      })
+      .then( 
+        this.getPings() 
+      )
+      .catch(err => {
+        this.setState({ 
+          message: "Couldn't accept this volunteer." 
+        })
+      })
+  }
+
+  handleDeclinePing = (e) => {
+    axios
+      .put("/users/declinePing", {
         pingId: e.target.id
       })
       .then(() => {
@@ -49,57 +127,71 @@ export default class OrgFeed extends Component {
       .then(
         this.getPings()
       )
+      .catch(err => {
+        this.setState({ 
+          message: "Couldn't decline this volunteer." 
+        })
+      })
+  }
+
+  renderAccepted = () => {
+    return <AcceptedPings
+              accepted={this.state.accepted}
+              handleDeclinePing={this.handleDeclinePing} />
+  }
+  renderPending = () => {
+    return <PendingPings
+              pending={this.state.pending}
+              handleAcceptPing={this.handleAcceptPing}
+              handleDeclinePing={this.handleDeclinePing} />
+  }
+  renderDeclined = () => {
+    return <DeclinedPings
+              declined={this.state.declined} />
   }
 
   render() {
-    const { pings, selectedId } = this.state;
-    // console.log(this.state.selectedId)
-    // console.log(pings)
+    const { pings, selectedId, accepted, declined, pending } = this.state;
+    console.log(this.state)
 
     return (
-      <div>
-        {pings[0] ? <h3>Accepted</h3> : <h3>No pings yet</h3> }
-        <div className="org-feed-accepted-pings">
-            {
-              pings.map(ping => {
-                if (ping.accepted) {
-                  return (
-                    <div name={ping.ping_id} className="each-ping" key={ping.username}>
-                      {ping.name} {" "} (@{ping.username})<br />
-                      Sent at: {ping.time_sent.slice(0, 21)}<br />
-                      Start time: {ping.start_time}<br />
-                      Available for: {ping.duration}<br />
-                    </div>
-                  )
-              }
-            })
-          }
-        </div>
+      <div className="org-feed-parent">
+        <Tabs className="tabs">
+          <TabList className="tab-list">
+            <Tab className="single-tab header">Accepted</Tab>
+            <Tab className="single-tab header">Pending</Tab>
+          </TabList>
 
-        {pings[0] ? <h3>Pending</h3> : ""}
-        <div className="org-feed-pending-pings">
-          {
-            pings.map(ping => {
-              if (!ping.accepted) {
-                console.log(ping.ping_id)
-                return (
-                  <div name={ping.ping_id} className="each-ping">
-                    {ping.name} {" "} (@{ping.username})<br />
-                    Sent at: {ping.time_sent.slice(0, 21)}<br />
-                    Start time: {ping.start_time}<br />
-                    Available for: {ping.duration}<br />
-                    <button className="accept-decline-ping" onClick={this.handleDeclinePing} id={ping.ping_id}>
-                      &#10005;
-                    </button>
-                    <button className="accept-decline-ping" onClick={this.handleAcceptPing} id={ping.ping_id}>
-                      &#10004;
-                    </button>
-                  </div>
-                )
-              }
-            })
-          }
-        </div>
+          <TabPanel className="tab-panel">
+            {accepted[0] ? (
+              <div className="org-feed-accepted-pings">
+                {this.renderAccepted()}
+              </div>
+              ) :
+              <h2 className="header">No volunteers accepted yet.</h2> }
+          </TabPanel>
+
+          <TabPanel className="tab-panel">
+            {declined[0] ? (
+              <div className="org-feed-pending-pings">
+                {this.renderPending()}
+              </div>
+              ) : 
+              <h3>No pending requests from volunteers.</h3>}
+          </TabPanel>
+        </Tabs>
+
+        {/* <div>
+					<Modal
+						isOpen={this.state.modalIsOpen}
+						onAfterOpen={this.afterOpenModal}
+						onRequestClose={this.closeModal}
+						style={customStyles}
+						contentLabel="Org Pings Modal"
+					>
+						<button onClick={this.closeModal}>&#10005;</button>
+					</Modal>
+      	</div> */}
       </div>
     )
   }

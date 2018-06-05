@@ -55,6 +55,9 @@ class VolunteerFeed extends Component {
 	handleOrgClick = (e) => {
 		const { allOrgs } = this.state;
 
+		console.log(2345)
+		console.log(e.target.id)
+
 		for (let i = 0; i < allOrgs.length; i++) {
 			if (allOrgs[i].username === e.target.id) {
 				this.setState({
@@ -87,17 +90,19 @@ class VolunteerFeed extends Component {
 				{allOrgs.map(org => {
 					return (
 						<div className="single-org" onClick={this.handleOrgClick} id={org.username} key={org.name}>
-							<span className="org-name">{org.name}</span><br />
+							{org.name}<br />
 							{org.telephone}<br/>
 							{org.website}<br/>
 							{org.address}<br />
+							
 							{
 								selectedOrg.id === org.id
-								? <button onClick={this.openModal} className="send-ping-button">
+								? <button onClick={this.openModal} className="send-ping-submit">
 										Send Ping
 									</button>
 								: ""
 							}
+							
 						</div>
 					)
 				})}

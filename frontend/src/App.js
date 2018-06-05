@@ -89,11 +89,15 @@ class App extends Component {
     return (
       <div className="app">
         <nav>
-          { activeUser ? "" : <div className="nav-link-container"><Link to="/login">Login</Link></div> }
-          { activeUser ? "" : <div className="nav-link-container"><Link to="/register">Register</Link></div> }
-          { activeUser ? <div className="nav-link-container"><Link to="/home">Home</Link></div> : "" }
-          { activeUser ? <div className="nav-link-container"><Link to="/history">Ping History</Link></div> : "" }
-          { user ? <div className="nav-link-container"><Link to="/logout">Logout</Link></div> : "" }
+          {/* <div className="nav-img-div">
+            <img src="https://i.imgur.com/HjMgQyI.png" alt="logo" /></div> */}
+          
+            { activeUser ? "" : <div className="nav-link-container"><Link to="/login">Login</Link></div> }
+            { activeUser ? "" : <div className="nav-link-container"><Link to="/register">Register</Link></div> }
+            { activeUser ? <div className="nav-link-container"><Link to="/home">Home</Link></div> : "" }
+            { activeUser ? <div className="nav-link-container"><Link to="/history">Ping History</Link></div> : "" }
+            { user ? <div className="nav-link-container"><Link to="/logout">Logout</Link></div> : "" }
+          
         </nav>
 
         <Switch>

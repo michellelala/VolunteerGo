@@ -32,21 +32,29 @@
 .single-org {
   text-align: left;
   font-size: 0.9em;
-  width: 100%;
-  margin: 0;
+  width: 60%;
+  margin: 0 auto;
   border: 4px solid transparent;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
 }
 .single-org:hover {
-  background-color: white;
-  border-top: 4px solid #DC127E;
-  border-bottom: 4px solid #DC127E;
-  transition: 0.5s;
+  background-color: whitesmoke;
+  border-bottom: 1px solid #dcff25;
+  /* transition: 0.5s; */
 }
 .org-name {
   font-weight: bold;
   font-size: 1.2em;
+}
+.org-info {
+  width: 50%;
+}
+.org-send-ping-button-div {
+  width: 50%;
 }
 
 .select {
@@ -67,5 +75,8 @@
     width: 100%;
   }
 
+  .single-org {
+    width: 90%;
+  } 
 
 }

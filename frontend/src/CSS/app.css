@@ -45,9 +45,13 @@ h1, h2, h3, h4 {
 .smaller {
   font-size: 0.9em;
 }
+.pink {
+  color: #d41c8e;
+}
 .green {
   color: #00b100;
 }
+
 
 /* ----- Nav Bar guidelines ----- */
 nav {
@@ -144,5 +148,9 @@ input[type="submit"]:hover {
   .nav-link-container:hover {
     border: none;
     transition: 0.5s;
+  }
+
+  .header {
+    font-size: 0.9em;
   }
 }

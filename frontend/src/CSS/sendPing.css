@@ -10,9 +10,11 @@
 
 .send-ping-submit {
   padding: 10px;
-  border-radius: 14px;
+  border-radius: 20px;
   font-family: "Noto Sans", sans-serif;
   font-size: 0.8em;
+  width: 100px;
+  height: 40px;
 }
 
 select {

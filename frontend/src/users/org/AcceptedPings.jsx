@@ -5,12 +5,13 @@ import React from "react";
 const AcceptedPings = ({ accepted, handleDeclinePing }) => {
   return accepted.map(ping => {
     let timeSent = ping.time_sent // Default military time
+    let date = timeSent.slice(0,3) + ", " + timeSent.slice(4,7) + " " + timeSent.slice(8,10)
     let hour = timeSent.slice(16, 18) // Get the hour
     let min = timeSent.slice(19, 21) // Get the minute
-    let timeOfDay = " AM" // Set default time of day to AM
+    let timeOfDay = "AM" // Set default time of day to AM
     // Alter time to follow 12-hour clock
     if (parseInt(hour) > 12) { 
-      timeOfDay = " PM"
+      timeOfDay = "PM"
       hour -= 12 
     }
     timeSent = hour + ":" + min + timeOfDay
@@ -19,7 +20,7 @@ const AcceptedPings = ({ accepted, handleDeclinePing }) => {
         <div name={ping.ping_id} className="each-ping" key={Math.random()}>
           <span className="bold">{ping.name}</span> {" "} (@{ping.username})<br />
           <span className="smaller">
-            <span className="underline">Sent at</span>: {timeSent}<br />
+            <span className="underline">Sent at</span>: {date} @{timeSent}<br />
             <span className="underline">Start time</span>: {ping.start_time}<br />
             <span className="underline">Available for</span>: {ping.duration}<br />
           </span>

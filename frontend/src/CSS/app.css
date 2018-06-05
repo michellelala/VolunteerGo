@@ -5,6 +5,7 @@
 - dull purple: 4b5185
 - lime green: dcff25
 - violet: 240073
+- green: 00b100
 --------- End ---------
 */
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
@@ -43,6 +44,9 @@ h1, h2, h3, h4 {
 }
 .smaller {
   font-size: 0.9em;
+}
+.green {
+  color: #00b100;
 }
 
 /* ----- Nav Bar guidelines ----- */

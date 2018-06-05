@@ -8,7 +8,7 @@ import Login from "./users/Login";
 import Register from "./users/Register";
 import Logout from "./users/Logout";
 import VolunteerFeed from "./users/volunteer/VolunteerFeed";
-import VolunteerPingHistory from "./users/volunteer/VolunteerPingHistory";
+import VolunteerPingHistory from "./users/volunteer/pingHistory/VolunteerPingHistory";
 import OrgFeed from "./users/org/OrgFeed";
 import OrgPingHistory from "./users/org/OrgPingHistory";
 

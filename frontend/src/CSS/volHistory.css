@@ -1,0 +1,28 @@
+/* 
+----- Color Scheme - MIX -----
+- hot pink: d41c8e
+- mint green: bdeacd
+- dull purple: 4b5185
+- lime green: dcff25
+- violet: 240073
+--------- End ---------
+*/
+
+.vol-history-parent {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.vol-history-pings {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ping-header {
+  color: #d41c8e;
+  border-bottom: 1px solid #bdeacd;
+}

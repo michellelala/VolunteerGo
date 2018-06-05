@@ -50,6 +50,7 @@ export default class OrgPingHistory extends Component {
   }
 
   render() {
+    const { declined, expired } = this.state;
 
     return (
       <div className="org-feed-parent">
@@ -60,10 +61,16 @@ export default class OrgPingHistory extends Component {
           </TabList>
       
           <TabPanel>
-            {this.renderDeclined()}
+            <div className="org-feed-pings-div">
+              {
+                declined[0] ? 
+                <DeclinedPings declined={this.state.declined} />
+                : <h3>No volunteers declined yet!</h3>
+              }
+            </div>
           </TabPanel>
           <TabPanel>
-            <h2>expired pings</h2>
+            <h2 className="header">This feature is coming soon!</h2>
           </TabPanel>
         </Tabs>
       </div>

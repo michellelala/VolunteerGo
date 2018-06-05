@@ -32,6 +32,19 @@ h1, h2, h3, h4 {
   letter-spacing: 0.2em;
 }
 
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
+}
+.underline {
+  text-decoration: underline;
+}
+.smaller {
+  font-size: 0.9em;
+}
+
 /* ----- Nav Bar guidelines ----- */
 nav {
   /* padding: 40px 20px; */

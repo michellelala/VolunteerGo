@@ -30,8 +30,7 @@
   margin: 10px;
 }
 
-.org-feed-accepted-pings,
-.org-feed-pending-pings {
+.org-feed-pings-div {
   width: 80%;
   padding: 20px;
   display: flex;
@@ -88,8 +87,7 @@
     
   }
 
-  .org-feed-accepted-pings,
-  .org-feed-pending-pings {
+  .org-feed-pings-div {
     flex-direction: column;
     width: 95%;
     padding: 0;

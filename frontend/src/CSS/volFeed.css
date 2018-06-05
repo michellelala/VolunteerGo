@@ -49,6 +49,10 @@
   font-size: 1.2em;
 }
 
+.select {
+  width: fit-content;
+}
+
 .send-ping-button {
   width: fit-content;
 }

@@ -164,17 +164,17 @@ export default class OrgFeed extends Component {
 
           <TabPanel className="tab-panel">
             {accepted[0] ? (
-              <div className="org-feed-accepted-pings">
-                {this.renderAccepted()}
+              <div className="org-feed-pings-div">
+                { this.renderAccepted() }
               </div>
               ) :
-              <h2 className="header">No volunteers accepted yet.</h2> }
+              <h3>No volunteers accepted yet.</h3> }
           </TabPanel>
 
           <TabPanel className="tab-panel">
             {declined[0] ? (
-              <div className="org-feed-pending-pings">
-                {this.renderPending()}
+              <div className="org-feed-pings-div">
+                { this.renderPending() }
               </div>
               ) : 
               <h3>No pending requests from volunteers.</h3>}

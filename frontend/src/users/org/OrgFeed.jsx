@@ -172,7 +172,7 @@ export default class OrgFeed extends Component {
           </TabPanel>
 
           <TabPanel className="tab-panel">
-            {declined[0] ? (
+            {pending[0] ? (
               <div className="org-feed-pings-div">
                 { this.renderPending() }
               </div>

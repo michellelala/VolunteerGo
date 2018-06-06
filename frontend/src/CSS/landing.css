@@ -1,0 +1,91 @@
+/* 
+----- Color Scheme - MIX -----
+- hot pink: d41c8e
+- mint green: bdeacd
+- dull purple: 4b5185
+- lime green: dcff25
+- violet: 240073
+- green: 00b100
+--------- End ---------
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+
+/* links */
+.link {
+  color: #d41c8e;
+  text-decoration: none;
+}
+.link:hover {
+  color: white;
+}
+
+/* general */
+.landing-parent-div {
+  background: url(https://i.imgur.com/fVTT69b.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+
+.hold-imgs {
+  width: 600px;
+}
+.hands {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.landing-user-type {
+  font-size: 3em;
+  font-family: "Raleway", sans-serif;
+  color: #f8f8f8;
+  letter-spacing: 0.25em;
+  padding-left: 20px;
+}
+.vol-title {
+  text-align: left;
+}
+.org-title {
+  text-align: right;
+}
+
+.hold-blurbs {
+  width: 100%;
+  background-color: rgba(245, 245, 245, 1);
+}
+.blurb {
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px 20px 10px 20px;
+  text-align: left;
+  color: #240073;
+}
+
+
+/* space divs */
+.space {
+  height: 100px;
+  background-color: rgba(245, 245, 245, 1);
+}
+.clear-space {
+  height: 100px;
+  /* background-color: transparent; */
+}
+
+
+@media all and (max-width: 450px) {
+  .vol-blurb {
+    width: 80%;
+  }
+
+  .landing-user-type {
+    font-size: 2em;
+  }
+}

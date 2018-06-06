@@ -4,6 +4,7 @@ import axios from "axios";
 
 import "./CSS/app.css";
 
+import LandingPage from "./LandingPage";
 import Login from "./users/Login";
 import Register from "./users/Register";
 import Logout from "./users/Logout";
@@ -91,7 +92,7 @@ class App extends Component {
         <nav>
           {/* <div className="nav-img-div">
             <img src="https://i.imgur.com/HjMgQyI.png" alt="logo" /></div> */}
-          
+            {/* <div className="app-name">VolunteerGo</div> */}
             { activeUser ? "" : <div className="nav-link-container"><Link to="/login">Login</Link></div> }
             { activeUser ? "" : <div className="nav-link-container"><Link to="/register">Register</Link></div> }
             { activeUser ? <div className="nav-link-container"><Link to="/home">Home</Link></div> : "" }
@@ -101,6 +102,7 @@ class App extends Component {
         </nav>
 
         <Switch>
+          <Route exact path="/" component={ LandingPage } />
           <Route path="/login" render={ this.renderLogin } />
           <Route path="/register" component={ Register } />
           <Route path="/home" render={ this.renderFeed } />

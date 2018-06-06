@@ -193,59 +193,62 @@ export default class Register extends Component {
 		}
 		
 		return (
-			<div className="reg-parent-container">
-				<div className="reg-div">
-					<input
-						value={emailInput}
-						placeholder="Email"
-						name="emailInput"
-						onChange={this.handleInputChange}
-						className="reg-input-divs"
-					/>
-					<input
-						value={usernameInput}
-						placeholder="Username"
-						name="usernameInput"
-						onChange={this.handleInputChange}
-						className="reg-input-divs"
-					/>
-					<input
-						value={passwordInput}
-						placeholder="Password"
-						name="passwordInput"
-						type="password"
-						onChange={this.handleInputChange}
-						className="reg-input-divs"
-					/>
-					<input
-						value={nameInput}
-						placeholder="Volunteer/Organization Name"
-						name="nameInput"
-						onChange={this.handleInputChange}
-						className="reg-input-divs"
-					/>
-				</div>
-
-				<h3 className="reg-header">I'm a...</h3>
-				<div className="choose-user-type-div">
-					<div className="user-type" onClick={this.handleUserType}>
-						Volunteer 
+			<div className="reg-main">
+				<div className="reg-parent-container">
+					<div className="create-new-header">Create a new account</div>
+					<div className="reg-div">
+						<input
+							value={emailInput}
+							placeholder="Email"
+							name="emailInput"
+							onChange={this.handleInputChange}
+							className="reg-input-divs"
+						/>
+						<input
+							value={usernameInput}
+							placeholder="Username"
+							name="usernameInput"
+							onChange={this.handleInputChange}
+							className="reg-input-divs"
+						/>
+						<input
+							value={passwordInput}
+							placeholder="Password"
+							name="passwordInput"
+							type="password"
+							onChange={this.handleInputChange}
+							className="reg-input-divs"
+						/>
+						<input
+							value={nameInput}
+							placeholder="Volunteer/Organization Name"
+							name="nameInput"
+							onChange={this.handleInputChange}
+							className="reg-input-divs"
+						/>
 					</div>
-					<div className="user-type" onClick={this.handleUserType} name="organization"> 
-						Non-Profit Org 
+
+					<div className="reg-header">I am a...</div>
+					<div className="choose-user-type-div">
+						<div className="user-type" onClick={this.handleUserType}>
+							Volunteer 
+						</div>
+						<div className="user-type" onClick={this.handleUserType} name="organization"> 
+							Non-Profit Org 
+						</div>
 					</div>
-				</div>
 
-				<div className="reg-depending-on-user-type">
-					{this.dependingOnUserType()}
-				</div>
+					<div className="reg-depending-on-user-type">
+						{this.dependingOnUserType()}
+					</div>
 
-				<div className="error-message">{this.state.message}</div>
+					<div className="error-message">{this.state.message}</div>
 
-				<div className="reg-or-login-div">
-					<h3>Already have an account? {" "}
-						<Link to="/login">Login here</Link>.
-					</h3>
+					<div className="reg-or-login-div">
+						<h3>Already have an account? {" "}
+							<Link to="/login">Login here</Link>.
+						</h3>
+					</div>
 				</div>
 			</div>
   	);

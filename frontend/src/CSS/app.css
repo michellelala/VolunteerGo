@@ -8,7 +8,7 @@
 - green: 00b100
 --------- End ---------
 */
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Raleway');
 
 html {
   background-color: #f8f8f8;
@@ -83,6 +83,10 @@ nav a {
 nav a:hover { 
   color: #bdeacd;
   transition: 0.2s;
+}
+
+.app-name {
+  color: #bdeacd;
 }
 
 /* ----- Link guidelines ----- */

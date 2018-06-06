@@ -51,45 +51,45 @@ export default class Login extends Component {
 
   render() {
 		const { usernameInput, passwordInput, message, loggedIn } = this.state;
-		// console.log("Login props: ", this.props)
-
 
 		if (loggedIn) {
       return <Redirect to="/home" />;
     }
 		
     return (
-      <div className="login-container">
-				<form onSubmit={this.handleLoginFormSubmit} className="login-form">
-					<input
-						value={usernameInput}
-						placeholder="Username"
-						name="usernameInput"
-						onChange={this.handleInputChange}
-						className="login-username"
-					/>
-					<br />
-					<input
-						value={passwordInput}
-						placeholder="Password"
-						name="passwordInput"
-						type="password"
-						onChange={this.handleInputChange}
-						className="login-password"
-					/>
-					<br />
-					<input
-						type="submit"
-						value="Login"
-						className="login-submit"
-					/>
-				</form>
-				<div className="error-message">{this.state.message}</div>
+			<div className="login-parent">
+				<div className="login-container">
+					<form onSubmit={this.handleLoginFormSubmit} className="login-form">
+						<input
+							value={usernameInput}
+							placeholder="Username"
+							name="usernameInput"
+							onChange={this.handleInputChange}
+							className="login-username"
+						/>
+						<br />
+						<input
+							value={passwordInput}
+							placeholder="Password"
+							name="passwordInput"
+							type="password"
+							onChange={this.handleInputChange}
+							className="login-password"
+						/>
+						<br />
+						<input
+							type="submit"
+							value="Login"
+							className="login-submit"
+						/>
+					</form>
+					<div className="error-message">{this.state.message}</div>
 
-				<div className="reg-or-login-div">
-					<h3>Don't have an account? {" "}
-						<Link to="/register">Register here</Link>.
-					</h3>
+					<div className="reg-or-login-div">
+						<h3>Don't have an account? {" "}
+							<Link to="/register">Register here</Link>.
+						</h3>
+					</div>
 				</div>
 			</div>
     );

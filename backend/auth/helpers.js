@@ -1,6 +1,9 @@
 const bcrypt = require("bcryptjs");
 const pgp = require("pg-promise")({});
-const db = pgp("postgres://localhost/volunteergo");
+const dotenv = require("dotenv");
+dotenv.load();
+const db = pgp(process.env.DATABASE_URL);
+
 
 function comparePassword(userPassword, dbPassword) {
   return bcrypt.compareSync(userPassword, dbPassword);

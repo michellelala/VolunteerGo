@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import googleKey from "../../google-key.js"
+import dotenv from "dotenv";
 import { GoogleApiWrapper } from "google-maps-react";
 import Map from "./Map";
+
+dotenv.load();
 
 // The parent of Map
 export class MapContainer extends Component {
@@ -22,5 +24,5 @@ export class MapContainer extends Component {
 
 
 export default GoogleApiWrapper({
-	apiKey: googleKey.key
+	apiKey: process.env.GOOGLE_KEY
 })(MapContainer)

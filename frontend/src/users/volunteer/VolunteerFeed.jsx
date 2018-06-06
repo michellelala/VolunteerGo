@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { GoogleApiWrapper } from "google-maps-react";
 import Modal from "react-modal";
 import axios from "axios";
-import googleKey from "../../google-key.js"
 import "../../CSS/volFeed.css";
+
+import dotenv from "dotenv";
 
 import MapContainer from "./MapContainer";
 import SendPing from "./SendPing";
+
+dotenv.load();
 
 Modal.setAppElement('#root')
 
@@ -141,5 +144,5 @@ class VolunteerFeed extends Component {
 }
 
 export default GoogleApiWrapper({
-	apiKey: googleKey.key
+	apiKey: process.env.GOOGLE_KEY
 })(VolunteerFeed)

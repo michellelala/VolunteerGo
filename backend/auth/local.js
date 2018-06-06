@@ -3,10 +3,14 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const init = require("./passport");
 const pgp = require("pg-promise")({});
-const db = pgp("postgres://localhost/volunteergo");
+const dotenv = require("dotenv");
 const authHelpers = require("./helpers");
+dotenv.load()
+const db = pgp(process.env.DATABASE_URL);
+
 
 const options = {};
+
 
 init();
 

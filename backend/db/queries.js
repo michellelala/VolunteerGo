@@ -1,7 +1,10 @@
 const pgp = require("pg-promise")({});
-const db = pgp("postgres://localhost/volunteergo");
+const dotenv = require("dotenv");
 const authHelpers = require("../auth/helpers");
 const passport = require("../auth/local");
+dotenv.load();
+const db = pgp(process.env.DATABASE_URL);
+
 
 
 // ----- REGISTER NEW USER

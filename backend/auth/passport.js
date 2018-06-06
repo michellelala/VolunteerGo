@@ -1,6 +1,9 @@
 const passport = require('passport')
 const pgp = require('pg-promise')({})
-const db = pgp('postgres://localhost/volunteergo')
+const dotenv = require("dotenv");
+dotenv.load();
+const db = pgp(process.env.DATABASE_URL);
+
 
 module.exports = () => {
 	passport.serializeUser((user, done) => {

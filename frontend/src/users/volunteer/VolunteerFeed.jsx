@@ -10,6 +10,7 @@ import SendPing from "./SendPing";
 
 Modal.setAppElement('#root')
 
+// Modal styling
 const customStyles = {
   content : {
     top                   : '50%',
@@ -21,7 +22,6 @@ const customStyles = {
   }
 };
 
-
 class VolunteerFeed extends Component {
 	constructor(props) {
 		super(props)
@@ -31,10 +31,6 @@ class VolunteerFeed extends Component {
 			message: "",
 			modalIsOpen: false
 		}
-
-		this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
 	}
 
 	componentDidMount() {
@@ -55,9 +51,6 @@ class VolunteerFeed extends Component {
 	handleOrgClick = (e) => {
 		const { allOrgs } = this.state;
 
-		console.log(2345)
-		console.log(e.target.id)
-
 		for (let i = 0; i < allOrgs.length; i++) {
 			if (allOrgs[i].username === e.target.id) {
 				this.setState({
@@ -69,14 +62,14 @@ class VolunteerFeed extends Component {
 	}
 
 	// ---------- Modal functions ---------- //
-	openModal() {
+	openModal = () => {
     this.setState({ modalIsOpen: true });
   }
-  afterOpenModal() {
+  afterOpenModal = () => {
     // references are now sync'd and can be accessed.
-    // this.subtitle.style.color = '#f00';
+		// this.subtitle.style.color = '#f00';
   }
-  closeModal() {
+  closeModal = () => {
     this.setState({ modalIsOpen: false });
 	}
 	// -------- End Modal functions -------- //

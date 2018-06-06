@@ -26,12 +26,6 @@ const DeclinedPings = ({ declined, handleDeclinePing }) => {
           <span className="underline">Start time</span>: {ping.start_time}<br />
           <span className="underline">Available for</span>: {ping.duration}<br />
         </span>
-        {/* <button className="accept-decline-ping" onClick={this.handleDeclinePing} id={ping.ping_id} name="decline">
-          &#10005;
-        </button>
-        <button className="accept-decline-ping" onClick={this.handleAcceptPing} id={ping.ping_id} name="accept">
-          &#10004;
-        </button> */}
       </div>
     )
   })

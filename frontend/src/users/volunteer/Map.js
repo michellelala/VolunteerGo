@@ -48,7 +48,6 @@ export default class Map extends Component {
 				const geocoder = new google.maps.Geocoder();
 				const infoWindow = new google.maps.InfoWindow();
 				this.handleOrgClick(geocoder, this.map, selectedOrg, infoWindow)
-				
 			}
 		}
 			
@@ -61,15 +60,28 @@ export default class Map extends Component {
 		geocoder.geocode({ "address": clickedOrg.address }, function(results, status) {
 			if (status === "OK") {
 				resultsMap.setCenter(results[0].geometry.location)
+				infoWindow.setPosition(results[0].geometry.location)
+				infoWindow.setContent(clickedOrg.name)
+				infoWindow.open(resultsMap)
 			} else {
 				alert('Geocode was not successful for the following reason: ' + status)
 			}
 		})
 	}
 
+	createUserLocMarker = (position, map, title) => {
+		const { google } = this.props
+		const marker = new google.maps.Marker({
+			position: position,
+			map: map,
+			title: title
+		})
+	}
+
 	locateUser = () => {
 		const { google } = this.props
 		let pos, infoWindow;
+
 		// User has to accept location tracking
 		if (navigator.geolocation) {
 			// Find the user's current location
@@ -81,11 +93,12 @@ export default class Map extends Component {
 					lng: position.coords.longitude
 				}
 				// Create new marker, with position set to user's current position
-				const marker = new google.maps.Marker({
-					position: pos,
-					map: this.map,
-					title: "Current position."
-				})
+				// const marker = new google.maps.Marker({
+				// 	position: pos,
+				// 	map: this.map,
+				// 	title: "Current position."
+				// })
+				this.createUserLocMarker(pos, this.map, "Current positon.")
 				// Set the info window to current posiiton
 				infoWindow.setPosition(pos)
 				infoWindow.setContent("You are here.")

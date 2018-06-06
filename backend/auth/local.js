@@ -3,8 +3,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const init = require("./passport");
 const pgp = require("pg-promise")({});
-const dotenv = require("dotenv");
 const authHelpers = require("./helpers");
+import dotenv from "dotenv";
 dotenv.load()
 const db = pgp(process.env.DATABASE_URL);
 

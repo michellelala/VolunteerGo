@@ -1,6 +1,6 @@
 const passport = require('passport')
 const pgp = require('pg-promise')({})
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.load();
 const db = pgp(process.env.DATABASE_URL);
 

@@ -1,7 +1,7 @@
 const pgp = require("pg-promise")({});
-const dotenv = require("dotenv");
 const authHelpers = require("../auth/helpers");
 const passport = require("../auth/local");
+import dotenv from "dotenv";
 dotenv.load();
 const db = pgp(process.env.DATABASE_URL);
 

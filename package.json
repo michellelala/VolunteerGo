@@ -4,5 +4,20 @@
   "scripts": {
     "start": "cd backend && node ./bin/www",
     "heroku-postbuild": "cd frontend && npm install --only=dev && npm install && npm run build"
+  },
+  "description": "Ever had a hankerin' to give back to society, but no feasible way to tell when you'd have the time? Heck, it's hard enough to squeeze in lunch, much less some volunteer time. And even if you found the time, you can't even go do the thing because you didn't tell the non-profit in time! What's a good samaritan to do?",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michellelala/VolunteerGo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michellelala/VolunteerGo/issues"
+  },
+  "homepage": "https://github.com/michellelala/VolunteerGo#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0"
   }
 }

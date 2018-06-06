@@ -1,12 +1,21 @@
 ## VolunteerGo
-Ever had a hankerin' to give back to society, but no feasible way to tell when you'd have the time? Heck, it's hard enough to squeeze in lunch, much less some volunteer time. And even if you found the time, you can't even go do the thing because you didn't tell the non-profit in time! What's a good samaritan to do?
+*Here to lend a helping hand.*
 
-#### Use this app, that's what!
-VolunteerGo is here to lend a helping hand.
+Good samaritans of the world: have you ever wanted to volunteer somewhere, but weren't sure of when you'd have the time?
+
+Non-profit orgs: have you ever wished that you could have a one-stop-shop for volunteers? Somewhere you could see when a volunteer is available, how long they're available, and have them let you know of all that information in advance?
+
+Look no further! VolunteerGo is here to solve your volunteering woes.
 
 ---
 
-This app is still a work-in-progress, but here is a list of features that will be implemented for MVP:
+VolunteerGo was built with love and care, using Express, Node.js, and PostgreSQL on the back-end, and React.js and HTML/CSS on the front-end. The following APIs / packages were used:
+* [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial): Geocoding, Markers, InfoWindows
+* google-maps-react
+* react-modal
+* react-tabs
+
+Other features:
 
 Organizations can:
 - Sign up to be part of the network of non-profit organizations
@@ -19,6 +28,8 @@ Volunteers can:
 - Send pings to organizations
 - See what organizations are near their current location
 - See their ping history
+
+---
 
 Future Features: 
 - Volunteers will receive notifications when their ping is accepted/declined/expired

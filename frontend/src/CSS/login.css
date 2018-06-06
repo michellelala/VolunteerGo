@@ -76,7 +76,7 @@
   .login-password,
   .login-submit {
     font-family: "Noto Sans", sans-serif;
-    font-size: 18px;
+    font-size: 0.9em;
     padding: 10px 20px;
     margin: 10px;
     /* border: 1px solid #E5EFF8; */

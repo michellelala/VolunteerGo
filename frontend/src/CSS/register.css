@@ -79,6 +79,7 @@
     padding: 5px 0;
     background-color: #f2f2f2;
     margin-top: 5px;
+    color: #d41c8e;
 }
 
 .user-type {
@@ -146,7 +147,7 @@
 
     .reg-input-divs {
         font-family: "Noto Sans", sans-serif;
-        font-size: 18px;   
+        font-size: 0.9em;   
         padding: 10px; 
         /* border: 1px solid #E5EFF8; */
     }

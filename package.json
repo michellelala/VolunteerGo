@@ -1,23 +1,29 @@
 {
-  "name": "volunteer-go",
-  "version": "9.8.0",
+  "name": "backend",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "cd backend && node ./bin/www",
+    "start": "nodemon ./bin/www",
     "heroku-postbuild": "cd frontend && npm install --only=dev && npm install && npm run build"
   },
-  "description": "Ever had a hankerin' to give back to society, but no feasible way to tell when you'd have the time? Heck, it's hard enough to squeeze in lunch, much less some volunteer time. And even if you found the time, you can't even go do the thing because you didn't tell the non-profit in time! What's a good samaritan to do?",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/michellelala/VolunteerGo.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/michellelala/VolunteerGo/issues"
-  },
-  "homepage": "https://github.com/michellelala/VolunteerGo#readme",
   "dependencies": {
-    "dotenv": "^6.0.0"
+    "bcryptjs": "^2.4.3",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "dotenv": "^6.0.0",
+    "express": "~4.15.5",
+    "express-session": "^1.15.6",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
+    "npm": "^5.7.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "password-hash-and-salt": "^0.1.4",
+    "pg-promise": "^8.2.2",
+    "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
   }
 }

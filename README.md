@@ -19,9 +19,10 @@ Thus, the idea for this app was born.
 
 ---
 
-### How VolunteerGo was built
+### How VolunteerGo Was Built
 
 With love and care, naturally! But I also used Express, Node.js, and PostgreSQL on the back-end, and React.js and HTML/CSS on the front-end. The following APIs / packages were used:
+
 * [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial)
   * [Geocoding](https://developers.google.com/maps/documentation/javascript/geocoding)
   * [Markers](https://developers.google.com/maps/documentation/javascript/markers)
@@ -30,7 +31,7 @@ With love and care, naturally! But I also used Express, Node.js, and PostgreSQL 
 * [react-modal](https://www.npmjs.com/package/react-modal)
 * [react-tabs](https://www.npmjs.com/package/react-tabs)
 
-#### Features:
+#### Features
 
 * Sign up for an account, either as a volunteer or a non-profit organization
 * Users are authenticated using passport.js, and passwords are salted, hashed, and stored securely in the database
@@ -46,11 +47,11 @@ With love and care, naturally! But I also used Express, Node.js, and PostgreSQL 
 
 ---
 
-#### Future Features: 
+### Next Steps: The Future of VolunteerGo
 
-- Volunteers will receive notifications when their ping is accepted/declined/expired
-- Organizations will receive notifications for when they receive a new ping
-- Organizations will receive pop-up confirmations for accepting/declined pings to reduce accidental clicks
+- Implement notifications for both user groups on ping status changes
+- More dynamic map experience for volunteers
+- Implement confirmations for sending/declining requests
 - Email confirmation to reduce fake account creation
 - User profiles for both user groups
 - AWS to host user images (for profile pictures)

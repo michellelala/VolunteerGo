@@ -69,6 +69,7 @@ export default class Map extends Component {
 		})
 	}
 
+	// Used in locateUser function
 	createUserLocMarker = (position, map, title) => {
 		const { google } = this.props
 		const marker = new google.maps.Marker({
@@ -92,12 +93,8 @@ export default class Map extends Component {
 					lat: position.coords.latitude,
 					lng: position.coords.longitude
 				}
-				// Create new marker, with position set to user's current position
-				// const marker = new google.maps.Marker({
-				// 	position: pos,
-				// 	map: this.map,
-				// 	title: "Current position."
-				// })
+
+				// Create user location marker
 				this.createUserLocMarker(pos, this.map, "Current positon.")
 				// Set the info window to current posiiton
 				infoWindow.setPosition(pos)

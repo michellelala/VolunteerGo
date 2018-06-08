@@ -107,7 +107,7 @@ export default class Map extends Component {
 				);
 		} else if (!navigator.geolocation) {
 			// Browser doesn't support Geolocation, user can't be located
-			let infoWindow = new google.maps.InfoWindow;
+			const infoWindow = new google.maps.InfoWindow;
 			this.handleLocationError(false, infoWindow, this.map.getCenter());
 		}
 	}

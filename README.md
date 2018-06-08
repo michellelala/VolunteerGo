@@ -34,6 +34,8 @@ With love and care, naturally! But I also used Express, Node.js, and PostgreSQL 
 #### Features
 
 * Sign up for an account, either as a volunteer or a non-profit organization
+<img src="./frontend/public/preview/landing.gif" alt="gif of landing and login page" />
+
 * Users are authenticated using passport.js, and passwords are salted, hashed, and stored securely in the database
 * As an organization:
   - Start receiving pings (volunteers send this to alert you of their availability) right away

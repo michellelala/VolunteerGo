@@ -31,20 +31,23 @@ With love and care, naturally! But I also used Express, Node.js, and PostgreSQL 
 * [react-modal](https://www.npmjs.com/package/react-modal)
 * [react-tabs](https://www.npmjs.com/package/react-tabs)
 
-#### Features
+### Features
 
 * Sign up for an account, either as a volunteer or a non-profit organization
 <img src="./frontend/public/preview/landing.gif" alt="gif of landing and login page" />
 
 * Users are authenticated using passport.js, and passwords are salted, hashed, and stored securely in the database
-* As an organization:
+
+#### As an organization:
   - Start receiving pings (volunteers send this to alert you of their availability) right away
   - Accept or decline pings based on your organizational needs
   - See your ping history (separated by accepted, declined, and pending)
-* As a volunteer:
+  
+#### As a volunteer:
   - View your current location
   - See location and information of nearby non-profits
   - Send pings to these non-profits
+  <img src="./frontend/public/preview/ping.gif" alt="gif of volunteer user sending a ping request" />
   - See your ping history (separated by accepted, declined, and pending)
 
 ---

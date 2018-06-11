@@ -7,7 +7,7 @@ Hello, and welcome to VolunteerGo.
 
 --- 
 
-### Background
+## Background
 
 I thought of this app as a solution to a problem I had back in college. As part of the Honors program, I needed to meet a minimum number of service hour requirements. Between going to school as a full-time student and working almost full-time hours in retail, it was difficult to squeeze in these hours.
 
@@ -15,11 +15,48 @@ It would have been great if I had an app, like VolunteerGo, where I could find n
 
 Thus, the idea for this app was born.
 
-(FYI, I left the Honors program.)
+---
+
+## Installation
+
+In terminal:
+
+1. Clone this repo 
+```
+$ git clone [repo]
+```
+2. cd into repo directory and install all dependencies for the backend
+```
+$ npm install
+```
+3. cd into frontend directory and install all dependencies
+```
+$ cd frontend
+$ npm install
+```
+4. Seed database
+  - [PostgreSQL](https://www.postgresql.org/) was used as the database, with [PSequel](http://www.psequel.com/) as the GUI
+  - From the root directory
+  ```
+  $ cd db
+  $ psql -f volunteergo.sql
+  ```
+  - This should populate the server with dummy data
+5. Run the project
+  - You'll need to open two separate terminal tabs/windows, 
+  - First tab/window: root directory
+    ```
+    $ npm start
+    ```
+  - Second tab/window: frontend folder
+    ```
+    cd frontend
+    npm start
+    ```
 
 ---
 
-### Features
+## Features
 
   <img src="./frontend/public/preview/landing.gif" alt="gif of landing and login page" />
   
@@ -34,7 +71,7 @@ Thus, the idea for this app was born.
   - Accept or decline pings based on your organizational needs
   - See your ping history (separated by accepted, declined, and pending)
   
-#### __As a volunteer__:
+### __As a volunteer__:
 
   <img src="./frontend/public/preview/ping.gif" alt="gif of volunteer user sending a ping request" />
   
@@ -45,7 +82,7 @@ Thus, the idea for this app was born.
 
 ---
 
-### How VolunteerGo Was Built
+## How VolunteerGo Was Built
 
 With love and care, naturally! But I also used Express, Node.js, and PostgreSQL on the back-end, and React.js and HTML/CSS on the front-end. The following APIs / packages were used:
 
@@ -59,7 +96,7 @@ With love and care, naturally! But I also used Express, Node.js, and PostgreSQL 
 
 ---
 
-### Next Steps: The Future of VolunteerGo
+## __Next Steps__: The Future of VolunteerGo
 
 - Implement notifications for both user groups on ping status changes
 - More dynamic map experience for volunteers

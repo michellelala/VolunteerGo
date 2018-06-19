@@ -25,8 +25,9 @@ In terminal:
 ```
 $ git clone [repo]
 ```
-2. cd into repo directory and install all dependencies for the backend
+2. cd into repo root directory and install all dependencies for the backend
 ```
+$ cd [/path/to/repo/]
 $ npm install
 ```
 3. cd into frontend directory and install all dependencies
@@ -42,7 +43,20 @@ $ npm install
   $ psql -f volunteergo.sql
   ```
   - This should populate the server with dummy data
-5. Run the project
+5. Grab a Google API key [here](https://developers.google.com/maps/documentation/javascript/get-api-key)
+6. Create a process.env file in your root directory to hold your environment variables
+```
+$ cd ..
+$ touch .env
+```
+7. Open your .env file in an IDE
+  - Declare two environment variables, `GOOGLE_KEY` and `DATABASE_URL`
+  ```
+  GOOGLE_KEY = [google_API_key_here]
+  DATABASE_URL = [database_url_here]
+  ```
+
+7. Run the project
   - You'll need to open two separate terminal tabs/windows, 
   - First tab/window: root directory
     ```

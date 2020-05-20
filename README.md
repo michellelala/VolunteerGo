@@ -9,13 +9,13 @@ Hello, and welcome to VolunteerGo, a responsive web application that I built as 
 
 ## Background
 
-I initially thought of this app during the [Access Code](https://www.c4q.nyc/accesscode/) application process. The idea came about as a solution to a problem I had back in college. As part of the Honors program, I needed to meet a minimum number of service hour requirements. Between going to school as a full-time student and working almost full-time hours in retail, it was difficult to squeeze in these hours.
+I initially thought of this app during the [Access Code](https://www.c4q.nyc/accesscode/) application process. The idea came about as a solution to a problem I had back in college. As part of the Honors program, I needed to meet a minimum number of service hour requirements. Between going to school as a full-time student and working full-time in a retail setting, it was difficult to squeeze in these hours.
 
-It would have been great if I had an app, like VolunteerGo, where I could find non-profit organizations around me and send them a quick message to see if they needed me that day. I would have loved to volunteer in the 2-hour scheduled breaks during certain school days, but there weren't any technologies available back then that did something like this.
+It would have been great if I had an app like VolunteerGo, where I could find local non-profit organizations and send them a quick message to see if they needed me that day. I would have loved to volunteer in the 2-hour scheduled breaks on weekdays, but there weren't any technologies available back then that did something like this.
 
 Thus, the idea for this app was born.
 
-In my design of the app, I wanted it to be simple to use, with minimal effort required for both parties involved. The responsiveness of the app (who doesn't have a cell phone these days?), easy to understand buttons, and simplistic and clean layout make the app incredibly user-friendly.
+In my design of the app, I wanted it to be simple to use, with minimal effort required for both parties involved. The responsiveness of the app (who doesn't have a cell phone these days?), easy to understand UI, and simplistic and clean layout make the app incredibly user-friendly.
 
 ---
 
